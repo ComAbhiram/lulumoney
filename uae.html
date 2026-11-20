@@ -424,8 +424,9 @@ main [id],.grey [id]{scroll-margin-top:96px}
 .f-legal a{text-decoration:none;color:rgba(255,255,255,.82)}
 .f-legal a:hover{color:#fff}
 /* footer watermark: outlined wordmark; letters rise in, then fill as the page reaches its end */
-.ftr{overflow:hidden}
-.wm{display:flex;align-items:flex-end;justify-content:space-between;margin:72px 0 0;font-family:var(--display);font-weight:900;font-stretch:84%;font-size:clamp(44px,15.6vw,290px);line-height:1;letter-spacing:-.01em;user-select:none;overflow:hidden;padding:.04em 0 .14em}
+.ftr{overflow:hidden;container-type:inline-size}
+.wm .sp{flex:none}
+.wm{display:flex;align-items:flex-end;justify-content:flex-start;margin:72px 0 0;font-family:var(--display);font-weight:900;font-stretch:84%;font-size:17cqi;line-height:1;letter-spacing:-.01em;user-select:none;overflow:hidden;padding:.04em 0 .14em}
 .wm span{display:inline-block;color:transparent;background-image:linear-gradient(100deg,transparent 42%,rgba(255,255,255,.7) 50%,transparent 58%),linear-gradient(180deg,rgba(255,255,255,.42) 0%,rgba(255,255,255,.18) 48%,rgba(255,255,255,0) 96%);background-size:320% 100%,100% 100%;background-position:160% 0%,0% 0%;background-repeat:no-repeat;-webkit-background-clip:text;background-clip:text}
 .wm .sp{width:.18em}
 .copy{font-size:14px;color:rgba(255,255,255,.7);display:grid;gap:10px}
@@ -873,6 +874,15 @@ document.querySelectorAll('.dc').forEach(a=>a.addEventListener('click',()=>{cons
 document.querySelectorAll('.btn').forEach(b=>{[...b.childNodes].forEach(n=>{if(n.nodeType===3&&n.textContent.trim()){
   const t=n.textContent.trim(),w=document.createElement('span');w.className='lbl';
   w.innerHTML='<span></span><span aria-hidden="true"></span>';w.children[0].textContent=t;w.children[1].textContent=t;n.replaceWith(w)}})});
+
+/* Footer watermark: fit the word to the footer width exactly (glyph widths depend on the loaded font) */
+const wmEl=document.querySelector('.wm');
+function fitWM(){if(!wmEl)return;wmEl.style.fontSize='100px';
+  const natural=[...wmEl.children].reduce((a,c)=>a+c.offsetWidth,0); // layout width: ignores the rise animation transforms
+  wmEl.style.fontSize=Math.max(32,(wmEl.clientWidth*.985/natural)*100)+'px';
+  if(window.ScrollTrigger)ScrollTrigger.refresh()}
+(document.fonts?document.fonts.ready:Promise.resolve()).then(fitWM);
+let wmT;addEventListener('resize',()=>{clearTimeout(wmT);wmT=setTimeout(fitWM,150)});
 
 /* flag strip: moved by scroll (GSAP below) */
 const F=['in.svg','pk.png','ph.png','bd.svg','eg.svg','lk.svg','gb.svg','us.svg'];
