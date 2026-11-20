@@ -41,6 +41,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
+html{overflow-x:clip}
 body{font-family:var(--body);color:var(--ink);background:#fff;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:clip}
 img{max-width:100%;display:block}
 a{color:inherit}
@@ -163,18 +164,38 @@ main [id],.grey [id]{scroll-margin-top:96px}
 .hc-plum{background:var(--plum)}
 .hc-plum h2,.hc-plum .ulink{color:var(--peach)}
 /* left card visual: rates */
-.rates{list-style:none;margin:auto 0 0;display:grid;gap:8px}
+.rates-win{margin:auto 0 0;height:288px;overflow:hidden;position:relative;-webkit-mask:linear-gradient(transparent,#000 14%,#000 86%,transparent);mask:linear-gradient(transparent,#000 14%,#000 86%,transparent)}
+.rates{list-style:none;display:grid;gap:8px;padding:0 6px;animation:ratesUp 16s linear infinite}
+.rates-win:hover .rates,.rates-win:focus-within .rates{animation-play-state:paused}
+@keyframes ratesUp{to{transform:translate3d(0,calc(-50% - 4px),0)}}
+.rates li{transition:transform .35s cubic-bezier(.2,0,0,1),filter .35s,opacity .35s,box-shadow .35s}
+.rates-win:hover .rates li{filter:blur(2px);opacity:.55}
+.rates-win .rates li:hover{filter:none;opacity:1;transform:scale(1.05);box-shadow:0 10px 24px -12px rgba(110,17,49,.45)}
+@media (prefers-reduced-motion:reduce){.rates-win{height:auto;-webkit-mask:none;mask:none}.rates{animation:none}.rates li[aria-hidden]{display:none}}
 .rates li{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.08);border-radius:9999px;padding:8px 18px 8px 8px}
 .rates img{width:40px;height:40px;border-radius:50%;object-fit:cover}
 .rates span{flex:1;font-size:15px;color:rgba(255,255,255,.85)}
 .rates b{font-weight:700;font-size:17px;font-variant-numeric:tabular-nums}
 .rates-note{font-size:13px;color:rgba(255,255,255,.7);margin-top:12px}
-/* right card visual: offer pill (Wise "Send 26,000 USD") */
-.pillviz{margin:auto 0;display:flex;flex-direction:column;align-items:center;gap:14px}
-.pillviz .p{display:flex;align-items:center;gap:16px;width:100%;max-width:340px;background:rgba(255,255,255,.12);border-radius:20px;padding:16px 20px;font-size:18px;font-weight:600}
-.pillviz .p i{width:48px;height:48px;border-radius:50%;background:#fff;color:var(--plum);display:grid;place-items:center;flex:none}
-.pillviz .p b{margin-left:auto;font-weight:700}
-.pillviz .t{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.18);color:#fff;border-radius:9999px;padding:4px 12px;font-size:15px;font-weight:600}
+/* right card visual: first-transfer ticket (stageshow-style: one object, one action, the result holds) */
+.ticket-stage{margin:auto 0;position:relative;padding:8px 0}
+.ticket{position:relative;background:#fff;color:var(--ink);border-radius:20px;padding:18px 18px 16px;box-shadow:0 24px 40px -20px rgba(40,4,16,.55);
+  -webkit-mask:radial-gradient(circle 9px at 0 62%,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 9px at 100% 62%,transparent 98%,#000) right/51% 100% no-repeat;
+          mask:radial-gradient(circle 9px at 0 62%,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 9px at 100% 62%,transparent 98%,#000) right/51% 100% no-repeat}
+.tk-top{display:flex;align-items:center;gap:12px;padding-bottom:14px;border-bottom:1.5px dashed var(--line)}
+.tk-flags{display:flex}.tk-flags img{width:30px;height:30px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px #fff}.tk-flags img+img{margin-left:-8px}
+.tk-tx{display:grid;line-height:1.25;padding-right:84px}.tk-tx b{font-size:15px}.tk-tx small{font-size:12px;color:var(--text)}
+.tk-steps{display:flex;align-items:center;gap:6px;margin-top:16px}
+.tk-dot{width:12px;height:12px;border-radius:50%;background:var(--line);flex:none;transition:background-color .3s}
+.tk-dot.on{background:var(--brand)}
+.tk-line{flex:1;height:3px;border-radius:3px;background:var(--line);overflow:hidden}
+.tk-line i{display:block;height:100%;background:var(--brand);transform:scaleX(0);transform-origin:0 50%}
+.tk-labels{display:flex;justify-content:space-between;margin-top:8px;font-size:11px;font-weight:600;color:var(--text)}
+.tk-stamp{position:absolute;right:12px;top:8px;width:78px;height:78px;border-radius:50%;display:grid;place-items:center;text-align:center;
+  color:var(--brand);background:#FBEEF2;box-shadow:inset 0 0 0 3px var(--brand),inset 0 0 0 7px #FBEEF2,inset 0 0 0 8.5px var(--brand);
+  font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;line-height:1.15;transform:rotate(-12deg)}
+@media (max-width:1180px){.ticket-stage{max-width:380px}}
+
 /* centre card: calculator */
 .cc{border-radius:32px;position:relative}
 .cc-top{padding:30px 30px 56px;color:#fff;background:var(--deep);border-radius:32px 32px 0 0}
@@ -345,9 +366,10 @@ main [id],.grey [id]{scroll-margin-top:96px}
 
 /* ---------- 6. Wise "loved by" -> quotes ---------- */
 .loved{padding:40px 0 120px}
-.loved .grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:stretch}
+.loved{overflow:clip}
+.loved .grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:stretch}
 .loved h2.d{font-size:clamp(44px,4.8vw,80px)}
-.qs{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.qs{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px}
 .q{border-radius:32px;padding:30px;min-height:540px;display:flex;flex-direction:column;margin:0}
 .q:first-child{background:var(--brand);color:#fff}
 .q:last-child{background:var(--pale);color:var(--ink)}
@@ -355,8 +377,8 @@ main [id],.grey [id]{scroll-margin-top:96px}
 .q blockquote{font-size:20px;font-weight:600;line-height:1.4}
 .q figcaption{margin-top:auto;font-size:16px;font-weight:700;padding-top:20px;border-top:1px solid currentColor;border-top-color:rgba(255,255,255,.3)}
 .q:last-child figcaption{border-top-color:var(--line)}
-@media (max-width:1000px){.loved .grid{grid-template-columns:1fr}}
-@media (max-width:560px){.qs{grid-template-columns:1fr}.q{min-height:300px}}
+@media (max-width:1000px){.loved .grid{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:560px){.qs{grid-template-columns:minmax(0,1fr)}.q{min-height:300px}}
 
 .loved-l{display:flex;flex-direction:column;gap:40px;height:100%}
 .loved-photo{margin:0;flex:1;min-height:280px;border-radius:32px;overflow:hidden;position:relative}
@@ -535,7 +557,7 @@ main [id],.grey [id]{scroll-margin-top:96px}
         <article class="hc hc-deep" aria-labelledby="rates-h" id="rates">
           <h2 id="rates-h">Today’s rates</h2>
           <p>Check the rate before you send.<br><a class="ulink" href="#" data-todo="Full rates page URL">See all rates</a></p>
-          <ul class="rates" id="rate-list"></ul>
+          <div class="rates-win"><ul class="rates" id="rate-list"></ul></div>
           <p class="rates-note">For AED 1. Live rates, updated through the day.</p>
         </article>
 
@@ -585,8 +607,14 @@ main [id],.grey [id]{scroll-margin-top:96px}
         <article class="hc hc-plum" aria-labelledby="offer-h">
           <h2 id="offer-h">A little extra on your first transfer.</h2>
           <p>Enjoy a welcome benefit on your first money transfer.<br><a class="ulink" href="#" data-todo="Offer page URL">See offer</a></p>
-          <div class="pillviz" aria-hidden="true">
-            <div class="p"><i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 19V5M5 12l7-7 7 7"/></svg></i>First transfer<b>Welcome benefit</b></div>
+          <div class="ticket-stage" aria-hidden="true">
+            <div class="ticket" id="ticket">
+              <div class="tk-top"><span class="tk-flags"><img src="assets/flags/ae.svg" alt=""><img src="assets/flags/in.svg" alt=""></span>
+                <span class="tk-tx"><b>Your first transfer</b><small>AED to INR</small></span></div>
+              <div class="tk-steps"><span class="tk-dot"></span><span class="tk-line"><i></i></span><span class="tk-dot"></span><span class="tk-line"><i></i></span><span class="tk-dot"></span></div>
+              <div class="tk-labels"><span>Sent</span><span>On its way</span><span>Delivered</span></div>
+              <div class="tk-stamp"><span>Welcome<br>benefit</span></div>
+            </div>
           </div>
         </article>
 
@@ -867,8 +895,10 @@ ccyEl.addEventListener('change',setCcy);
 $('calc').addEventListener('submit',e=>{e.preventDefault();if(!btn.disabled&&SEND_URL)location.href=SEND_URL});
 setCcy();
 
-$('rate-list').innerHTML=Object.keys(RATES).map(k=>{const c=RATES[k];
-  return `<li><img src="${c.flag}" alt="" width="40" height="40"><span>${c.name}</span><b>${rateTxt(c.r)} ${k}</b></li>`}).join('');
+{const row=(k,hidden)=>{const c=RATES[k];return `<li${hidden?' aria-hidden="true"':''}><img src="${c.flag}" alt="" width="40" height="40"><span>${c.name}</span><b>${rateTxt(c.r)} ${k}</b></li>`};
+ const keys=Object.keys(RATES);
+ // second copy makes the upward loop seamless; screen readers get the list once
+ $('rate-list').innerHTML=keys.map(k=>row(k)).join('')+keys.map(k=>row(k,true)).join('');}
 
 /* Header: hides on scroll down, returns on scroll up; stays visible while focused */
 const hdr=$('hdr'),mnav=$('mnav'),mbtn=$('menu-btn'),mclose=$('menu-close');
@@ -971,6 +1001,29 @@ $('flags').innerHTML=F.concat(F).map(f=>`<img src="assets/flags/${f}" alt="" wid
     }
   }
 
+  /* Offer card: a first-transfer ticket travels Sent -> On its way -> Delivered, then the welcome stamp lands on it */
+  const tk=document.getElementById('ticket');
+  if(tk&&window.anime){
+    const dots=[...tk.querySelectorAll('.tk-dot')],lines=[...tk.querySelectorAll('.tk-line i')],stamp=tk.querySelector('.tk-stamp');
+    const tkReset=()=>{dots.forEach(d=>d.classList.remove('on'));anime.set(lines,{scaleX:0});anime.set(stamp,{opacity:0,scale:2.2,rotate:-30});anime.set(tk,{opacity:1,translateY:0})};
+    if(reduce){dots.forEach(d=>d.classList.add('on'));anime.set(lines,{scaleX:1})}
+    else{
+      cycle(tk.closest('.ticket-stage'),(pass,next)=>{
+        tkReset();
+        const tl=anime.timeline({autoplay:false,complete:next});
+        tl.add({targets:tk,translateY:[36,0],opacity:[0,1],duration:700,easing:'easeOutCubic'})
+          .add({duration:200,complete:()=>dots[0].classList.add('on')})
+          .add({targets:lines[0],scaleX:[0,1],duration:900,easing:'easeInOutCubic',complete:()=>dots[1].classList.add('on')})
+          .add({targets:lines[1],scaleX:[0,1],duration:900,easing:'easeInOutCubic',complete:()=>dots[2].classList.add('on')})
+          .add({targets:stamp,opacity:[0,1],scale:[2.2,1],rotate:[-30,-12],duration:520,easing:'easeOutBack'},'+=250')
+          .add({targets:tk,translateY:[0,4,0],duration:320,easing:'easeOutQuad'},'-=260')
+          .add({duration:2600})
+          .add({targets:tk,translateY:[0,-24],opacity:[1,0],duration:420,easing:'easeInCubic'});
+        return tl;
+      });
+    }
+  }
+
   /* Step 2: cursor picks Ravi, chooses App, presses Pay; the button confirms on itself */
   const tile=document.querySelector('.pay-tile');
   if(tile&&window.anime){
@@ -1046,9 +1099,11 @@ $('flags').innerHTML=F.concat(F).map(f=>`<img src="assets/flags/${f}" alt="" wid
       const L=document.getElementById('pl-logo'),hint=document.getElementById('pl-hint');
       const lock=on=>{root.style.overflow=on?'hidden':'';if(smoother)smoother.paused(on)};
       const V=document.getElementById('pl-video'),vid=V.querySelector('video');
-      const placeV=()=>{const top=document.getElementById('hero-h').getBoundingClientRect().bottom+28,room=innerHeight-76-top;
-        const w=Math.min(innerWidth*.92,1100,Math.max(room,140)*16/9),h=innerWidth<768?Math.min(room,w*1.3):w*9/16;gsap.set(V,{top,width:w,height:h,xPercent:-50})};
+      const placeV=()=>{const top=document.getElementById('hero-h').getBoundingClientRect().bottom+24,room=innerHeight-72-top;
+        if(room<120){gsap.set(V,{display:'none'});return}
+        const w=Math.min(innerWidth*.92,1100,room*16/9),h=(innerWidth<768||innerHeight>innerWidth)?Math.min(room,w*1.3):w*9/16;gsap.set(V,{display:'block',top,width:w,height:h,xPercent:-50})};
       placeV();addEventListener('resize',placeV);
+      if(document.fonts)document.fonts.ready.then(placeV);addEventListener('load',placeV,{once:true});
       if(smoother)smoother.scrollTo(0,false);scrollTo(0,0);lock(true);
       addEventListener('load',()=>{if(root.classList.contains('pre')){scrollTo(0,0);if(smoother)smoother.scrollTo(0,false)}});
       gsap.set('.intro',{autoAlpha:1});
