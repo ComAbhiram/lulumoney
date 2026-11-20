@@ -139,9 +139,11 @@ main [id],.grey [id]{scroll-margin-top:96px}
 .hdr-r{display:flex;align-items:center;gap:4px}
 .lang{display:flex!important;align-items:center;gap:8px}
 .lang img{width:24px;height:24px;border-radius:50%;object-fit:cover}
-.hdr .btn{height:40px;padding:0 16px;font-size:16px}
+.hdr .btn{height:40px;padding:0 16px;font-size:16px;flex:none}
+.hdr-r{flex:none}
 @media (max-width:960px){.nav{display:none}.hdr-r .hide-sm{display:none}.menu-btn{display:inline-flex}}
-@media (max-width:420px){.hdr-r .lang{display:none!important}}
+@media (max-width:540px){.hdr-r .lang{display:none!important}.hdr .wrap{gap:8px}}
+@media (max-width:400px){.hdr .btn{padding:0 13px;font-size:15px}.menu-btn{padding:0 11px;font-size:15px}.hdr-r{gap:6px}}
 @media (max-width:420px){.logo img{height:34px}}
 
 /* ---------- 1. hero ---------- */
@@ -491,6 +493,22 @@ main [id],.grey [id]{scroll-margin-top:96px}
 .biz-media img{height:130%;top:-15%}
 .app>img{height:136%;top:-18%}
 .s-art.c img{height:124%;top:-12%}
+/* phones: tighter vertical rhythm between sections */
+@media (max-width:767px){
+  .hero-cards{margin-top:40px}
+  .panel{margin-top:40px;padding:56px 16px 40px}
+  .trust{padding:64px 0 16px}.trust h2{margin-bottom:28px}
+  .biz{padding:56px 0 0}.biz h2.d{margin-bottom:20px}.tabs{margin-bottom:24px}
+  .strip{margin-top:40px}
+  .safe{padding:56px 0}.safe .lead{margin-bottom:20px}.steps{margin-top:36px;gap:36px}.s-art{margin-bottom:18px}
+  .loved{padding:8px 0 40px}.loved .grid{gap:24px}.loved-l{gap:24px}.qs{gap:16px}
+  .mission{padding:96px 0 32px}.mission .box{padding:140px 16px 56px}
+  .faq{padding:8px 0 48px}.faq .grid{gap:16px}
+  .app{padding:40px 0}.app .box{padding:56px 20px}
+  .dests{padding:48px 0 40px}.dests-head{margin-bottom:24px}
+  .notes{padding-top:24px}
+  .ftr .wm{margin-top:40px}
+}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
