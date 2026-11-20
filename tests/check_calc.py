@@ -21,7 +21,7 @@ CASES = [
 
 with sync_playwright() as p:
     browser = p.chromium.launch()
-    page = browser.new_page()
+    page = browser.new_page(reduced_motion="reduce")  # no preloader / animations: test the calculator itself
     page.goto(PAGE)
     for field, value, err, disabled in CASES:
         page.fill(field, value)

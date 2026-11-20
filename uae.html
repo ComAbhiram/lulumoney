@@ -11,7 +11,7 @@
 <meta property="og:title" content="Send money home. Know what arrives. | LuLu Money UAE">
 <meta property="og:description" content="Clear rate. Clear fee. No hidden charges.">
 <meta property="og:image" content="https://lulu-money.uidesigns.intersmarthosting.in/assets/images/logo-lulu-money-white.webp">
-<script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.gsap)document.documentElement.classList.add('no-anim')},2500)</script>
+<script>(function(d){d.classList.add('js');if(!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('pre');if('scrollRestoration' in history)history.scrollRestoration='manual';if(location.hash)history.replaceState(null,'',location.pathname+location.search);scrollTo(0,0)}setTimeout(function(){if(!window.gsap){d.classList.add('no-anim');d.classList.remove('pre')}},4000)})(document.documentElement)</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I send money?", "acceptedAnswer": {"@type": "Answer", "text": "Choose where and how much, add your recipient and pay, then confirm and track it until it’s delivered."}}, {"@type": "Question", "name": "How will my recipient get the money?", "acceptedAnswer": {"@type": "Answer", "text": "Straight to their bank account, or as cash collected at a nearby pickup point."}}, {"@type": "Question", "name": "How can I pay?", "acceptedAnswer": {"@type": "Answer", "text": "Pay in the LuLu Money app, or settle at a LuLu Money counter."}}, {"@type": "Question", "name": "What fee will I pay?", "acceptedAnswer": {"@type": "Answer", "text": "The fee is shown up front, together with today’s rate, before you send. No hidden charges."}}, {"@type": "Question", "name": "How long does a transfer take?", "acceptedAnswer": {"@type": "Answer", "text": "Transfers are delivered in minutes. Timing depends on the destination and the payout method."}}, {"@type": "Question", "name": "Is there an offer on my first transfer?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Enjoy a welcome benefit on your first money transfer."}}]}</script>
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -100,6 +100,21 @@ button,input,select{font:inherit;color:inherit}
 .hdr.up{transform:translateY(-100%)}
 .hdr.solid{box-shadow:0 1px 0 rgba(255,255,255,.16)}
 .hdr-space{height:76px;background:var(--brand)}
+/* preloader state: white page, burgundy headline and logo; the hero colours arrive on the first scroll */
+.pl-logo,.pl-hint,.pl-video{display:none}
+.pre .pl-video{display:block;position:fixed;z-index:65;left:50%;top:0;border-radius:28px;overflow:hidden;visibility:hidden;background:var(--pale)}
+.pl-video video{width:100%;height:100%;object-fit:cover;display:block}
+.pre .pl-logo{display:block;position:fixed;z-index:70;top:14px;left:calc(50% - 85px);height:64px;width:170px;pointer-events:none;visibility:hidden}
+.pl-logo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.pl-logo .plw{opacity:0}
+.pre .pl-hint{display:flex;position:fixed;z-index:70;left:50%;bottom:28px;transform:translateX(-50%);align-items:center;gap:10px;border:0;background:none;color:var(--brand);font:600 14px var(--body);letter-spacing:.02em;cursor:pointer;visibility:hidden}
+.pl-mouse{width:22px;height:34px;border-radius:12px;box-shadow:inset 0 0 0 2px currentColor;display:grid;justify-items:center;padding-top:6px}
+.pl-mouse i{width:3px;height:7px;border-radius:2px;background:currentColor;animation:plDot 1.6s cubic-bezier(.65,0,.35,1) infinite}
+@keyframes plDot{0%{transform:translateY(0);opacity:1}70%{transform:translateY(10px);opacity:0}100%{transform:translateY(0);opacity:0}}
+.pre .hero,.pre .hdr,.pre .hdr-space{background:#fff}
+.pre .hero .d{color:var(--brand)}
+.pre .hdr .logo,.pre .hdr nav,.pre .hdr-r{opacity:0;visibility:hidden}
+.pre .hero .lead,.pre .hero .intro>.btn,.pre .cards3>*{opacity:0;visibility:hidden}
 main [id],.grey [id]{scroll-margin-top:96px}
 .menu-btn{display:none;align-items:center;gap:8px;height:40px;padding:0 14px;border-radius:9999px;border:0;background:rgba(255,255,255,.14);color:#fff;font-weight:600;font-size:16px;cursor:pointer}
 .menu-btn:hover{background:rgba(255,255,255,.22)}
@@ -161,16 +176,16 @@ main [id],.grey [id]{scroll-margin-top:96px}
 .pillviz .p b{margin-left:auto;font-weight:700}
 .pillviz .t{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.18);color:#fff;border-radius:9999px;padding:4px 12px;font-size:15px;font-weight:600}
 /* centre card: calculator */
-.cc{border-radius:32px;overflow:hidden;background:var(--deep);box-shadow:0 20px 40px -20px rgba(110,17,49,.35)}
-.cc-top{padding:30px 30px 0;color:#fff}
+.cc{border-radius:32px;position:relative}
+.cc-top{padding:30px 30px 56px;color:#fff;background:var(--deep);border-radius:32px 32px 0 0}
 .cc-top h2,.cc-top .ulink{color:var(--pink)}
-.cc-band{margin-top:24px;background:var(--brand);border-radius:32px 32px 0 0;padding:28px 30px 72px;color:#fff}
+.cc-band{margin-top:-32px;position:relative;background:var(--brand);border-radius:32px 32px 0 0;padding:28px 30px 72px;color:#fff}
 .cc-band .d{font-size:clamp(30px,2.6vw,44px);margin-bottom:14px}
 .cc-band small{font-size:15px}
 .dest{margin-top:8px;background:#fff;color:var(--ink);border-radius:12px;display:flex;align-items:center;gap:14px;padding:10px 14px}
 .dest img{width:40px;height:40px;border-radius:50%;object-fit:cover}
 .dest select{flex:1;border:0;background:transparent;font-weight:600;font-size:17px;cursor:pointer;min-width:0}
-.calc{color:var(--ink);background:#fff;border-radius:32px 32px 0 0;margin-top:-40px;position:relative;padding:20px 30px 30px}
+.calc{color:var(--ink);background:#fff;border-radius:32px;margin-top:-40px;position:relative;padding:20px 30px 30px;box-shadow:0 20px 40px -20px rgba(110,17,49,.35)}
 .guar{display:flex;justify-content:flex-end}
 .guar span{display:inline-flex;align-items:center;gap:8px;background:var(--chip);border-radius:9999px;padding:8px 14px;font-size:15px;font-weight:600}
 .f-lab{display:block;font-size:15px;color:var(--text);margin-top:14px}
@@ -199,6 +214,9 @@ main [id],.grey [id]{scroll-margin-top:96px}
 }
 
 /* ---------- 2. Wise "save on hidden fees" panel -> ways to send ---------- */
+#ways{position:relative;background:#fff}
+/* blocks scaled on scroll render as one layer (no 1px tile seams on their edges) */
+.panel,.mission .box,.biz-card,.app .box{will-change:transform;backface-visibility:hidden}
 .panel{background:var(--brand);color:#fff;border-radius:32px;padding:96px 40px 64px;text-align:center;margin-top:72px}
 .panel h2{font-size:clamp(44px,4.8vw,80px);max-width:16ch;margin:0 auto 24px}
 .panel .lead{font-size:20px;max-width:44ch;margin:0 auto 32px}
@@ -418,8 +436,16 @@ main [id],.grey [id]{scroll-margin-top:96px}
 .f-cols a:hover{color:#fff}
 .f-mid{display:flex;justify-content:space-between;align-items:center;padding:40px 0;gap:16px;flex-wrap:wrap}
 .f-mid img{height:56px;width:auto}
-.soc{display:flex;gap:24px}
-.soc a{color:var(--pink);display:grid;place-items:center;width:32px;height:32px}
+.soc{display:flex;gap:12px}
+.soc a{position:relative;isolation:isolate;overflow:hidden;width:48px;height:48px;border-radius:50%;color:#fff;display:grid;place-items:center;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.35);transition:box-shadow .4s,transform .4s cubic-bezier(.2,0,0,1);-webkit-mask-image:-webkit-radial-gradient(white,black)}
+.soc a::before{content:"";position:absolute;inset:0;background:#fff;border-radius:50%;transform:translate3d(0,101%,0);transition:transform .5s cubic-bezier(.65,0,.35,1);z-index:-1}
+.soc .roll{display:grid;overflow:hidden;width:22px;height:22px}
+.soc .roll svg{grid-area:1/1;width:22px;height:22px;transition:transform .5s cubic-bezier(.65,0,.35,1)}
+.soc .roll svg+svg{transform:translate3d(0,120%,0);color:var(--brand)}
+.soc a:hover,.soc a:focus-visible{box-shadow:inset 0 0 0 1.5px #fff;transform:translateY(-3px)}
+.soc a:hover::before,.soc a:focus-visible::before{transform:none}
+.soc a:hover .roll svg:first-child,.soc a:focus-visible .roll svg:first-child{transform:translate3d(0,-120%,0)}
+.soc a:hover .roll svg+svg,.soc a:focus-visible .roll svg+svg{transform:none}
 .f-legal{display:grid;grid-template-columns:repeat(4,1fr);gap:14px 24px;list-style:none;margin-bottom:40px}
 .f-legal a{text-decoration:none;color:rgba(255,255,255,.82)}
 .f-legal a:hover{color:#fff}
@@ -485,6 +511,9 @@ main [id],.grey [id]{scroll-margin-top:96px}
     <a class="btn btn-pale" href="#" data-todo="Log in URL">Log in</a>
   </div>
 </div>
+<div class="pl-logo" id="pl-logo" aria-hidden="true"><img class="plb" src="assets/logo-lulu-money-burgundy.webp" alt="" width="554" height="210"><img class="plw" src="assets/logo-lulu-money-white.webp" alt="" width="554" height="210"></div>
+<div class="pl-video" id="pl-video" aria-hidden="true"><video muted playsinline preload="auto" poster="assets/video/preloader-poster.jpg"><source src="assets/video/preloader.mp4" type="video/mp4"></video></div>
+<button class="pl-hint" id="pl-hint" type="button"><span class="pl-mouse" aria-hidden="true"><i></i></span>Scroll to begin</button>
 <div id="smooth-wrapper"><div id="smooth-content">
 
 <div class="hdr-space" aria-hidden="true"></div>
@@ -870,6 +899,10 @@ const CNAME={EGP:'Egyptian Pound',LKR:'Sri Lankan Rupee',GBP:'British Pound'};
 document.querySelectorAll('.dc small[data-rate]').forEach(el=>{const k=el.dataset.rate;el.textContent=RATES[k]?'1 AED = '+rateTxt(RATES[k].r)+' '+k:CNAME[k]+' · '+k});
 document.querySelectorAll('.dc').forEach(a=>a.addEventListener('click',()=>{const k=a.dataset.ccy;if(RATES[k]&&ccyEl.value!==k){ccyEl.value=k;setCcy()}}));
 
+/* Footer social icons: duplicate the icon so it can roll up on hover */
+document.querySelectorAll('.soc a').forEach(a=>{const svg=a.querySelector('svg');if(!svg)return;
+  const r=document.createElement('span');r.className='roll';svg.replaceWith(r);r.append(svg,svg.cloneNode(true))});
+
 /* Button labels: duplicate the text so it can roll on hover (second copy hidden from screen readers) */
 document.querySelectorAll('.btn').forEach(b=>{[...b.childNodes].forEach(n=>{if(n.nodeType===3&&n.textContent.trim()){
   const t=n.textContent.trim(),w=document.createElement('span');w.className='lbl';
@@ -1002,12 +1035,56 @@ $('flags').innerHTML=F.concat(F).map(f=>`<img src="assets/flags/${f}" alt="" wid
     // Smooth (inertia) scrolling on desktop; touch devices keep native scrolling.
     const smoother=desk?ScrollSmoother.create({wrapper:'#smooth-wrapper',content:'#smooth-content',smooth:1.1,effects:false}):null;
 
-    // Hero intro
-    gsap.timeline({defaults:{ease:'power4.out',duration:1.1}})
-      .set('.intro',{autoAlpha:1})
-      .from('#hero-h .ln>span',{yPercent:110,stagger:.12})
-      .from('.hero .lead, .hero .intro>.btn',{yPercent:60,autoAlpha:0,stagger:.08,duration:.8},'-=.75')
-      .from('.cards3>*',{yPercent:18,autoAlpha:0,stagger:.12,duration:1.2},'-=.6');
+    // Hero intro. With the preloader: white page, burgundy logo + headline; the first scroll hands over to the hero:
+    // the page turns burgundy, the headline turns white, and the logo flies into the header and turns white.
+    const rest=(tl,at)=>tl.fromTo('.hero .lead, .hero .intro>.btn',{yPercent:60,autoAlpha:0},{yPercent:0,autoAlpha:1,stagger:.08,duration:.8,ease:'power4.out'},at)
+      .fromTo('.cards3>*',{yPercent:18,autoAlpha:0},{yPercent:0,autoAlpha:1,stagger:.12,duration:1.2,ease:'power4.out'},'<+.15');
+    if(!root.classList.contains('pre')){
+      const tl=gsap.timeline({defaults:{ease:'power4.out',duration:1.1}}).set('.intro',{autoAlpha:1}).from('#hero-h .ln>span',{yPercent:110,stagger:.12});
+      rest(tl,'-=.75');
+    }else{
+      const L=document.getElementById('pl-logo'),hint=document.getElementById('pl-hint');
+      const lock=on=>{root.style.overflow=on?'hidden':'';if(smoother)smoother.paused(on)};
+      const V=document.getElementById('pl-video'),vid=V.querySelector('video');
+      const placeV=()=>{const top=document.getElementById('hero-h').getBoundingClientRect().bottom+28,room=innerHeight-76-top;
+        const w=Math.min(innerWidth*.92,1100,Math.max(room,140)*16/9),h=innerWidth<768?Math.min(room,w*1.3):w*9/16;gsap.set(V,{top,width:w,height:h,xPercent:-50})};
+      placeV();addEventListener('resize',placeV);
+      if(smoother)smoother.scrollTo(0,false);scrollTo(0,0);lock(true);
+      addEventListener('load',()=>{if(root.classList.contains('pre')){scrollTo(0,0);if(smoother)smoother.scrollTo(0,false)}});
+      gsap.set('.intro',{autoAlpha:1});
+      const intro=gsap.timeline({defaults:{ease:'power4.out'}})
+        .fromTo(L,{autoAlpha:0,y:16},{autoAlpha:1,y:0,duration:.9})
+        .from('#hero-h .ln>span',{yPercent:110,stagger:.12,duration:1.1},'-=.5')
+        .fromTo(V,{autoAlpha:0,y:30,scale:.97},{autoAlpha:1,y:0,scale:1,duration:.9,onStart:()=>{const pr=vid.play();if(pr)pr.catch(()=>{})}},'-=.6');
+      let fired=false,armed=false;
+      const keys=['ArrowDown','PageDown',' ','End','Enter'];
+      const onKey=e=>{if(keys.includes(e.key)){e.preventDefault();go()}};
+      const off=()=>{removeEventListener('wheel',go);removeEventListener('touchmove',go);removeEventListener('keydown',onKey);hint.removeEventListener('click',go)};
+      function go(){
+        if(!armed||fired)return;fired=true;off();
+        const from=L.getBoundingClientRect(),to=document.querySelector('.hdr .logo img').getBoundingClientRect();
+        const dx=(to.left+to.width/2)-(from.left+from.width/2),dy=(to.top+to.height/2)-(from.top+from.height/2),sc=to.height/from.height;
+        const tl=gsap.timeline({defaults:{ease:'power3.inOut'},onComplete:()=>{
+          root.classList.remove('pre');gsap.set(['.hero','.hdr','.hdr-space','#hero-h','.hdr .logo','.hdr nav','.hdr-r'],{clearProps:'backgroundColor,color,opacity,visibility'});
+          L.remove();hint.remove();V.remove();lock(false);ScrollTrigger.refresh()}});
+        removeEventListener('resize',placeV);
+        tl.to(V,{autoAlpha:0,y:-24,scale:.96,duration:.45,ease:'power2.in',onComplete:()=>vid.pause()},0)
+          .to(hint,{autoAlpha:0,y:12,duration:.35,ease:'power2.in'},0)
+          .to(['.hero','.hdr','.hdr-space'],{backgroundColor:'#8A1538',duration:1.1},'<')
+          .to('#hero-h',{color:'#fff',duration:1.1},'<')
+          .to(L,{x:dx,y:dy,scale:sc,duration:1.15},'<')
+          .to(L.querySelector('.plw'),{opacity:1,duration:.7,ease:'power1.inOut'},'<+.25')
+          .to(L.querySelector('.plb'),{opacity:0,duration:.7,ease:'power1.inOut'},'<')
+          .to('.hdr nav, .hdr-r',{autoAlpha:1,duration:.6,ease:'power2.out'},'-=.45')
+          .set('.hdr .logo',{autoAlpha:1})
+          .set(L,{autoAlpha:0});
+        rest(tl,'-=.55');
+      }
+      const arm=()=>{intro.then(()=>{armed=true;gsap.to(hint,{autoAlpha:1,duration:.6});
+        addEventListener('wheel',go,{passive:true});addEventListener('touchmove',go,{passive:true});addEventListener('keydown',onKey);hint.addEventListener('click',go);
+        if(vid.ended)go();else{vid.addEventListener('ended',go,{once:true});gsap.delayedCall(12,go)}})};
+      if(document.readyState==='complete')arm();else addEventListener('load',arm,{once:true});
+    }
 
     // Hero stacked cards (3-column desktop): pin the card row, then the centre card's layers
     // stack up into the same spot: "Send money home" covers "Live rates", then the calculator
@@ -1016,7 +1093,6 @@ $('flags').innerHTML=F.concat(F).map(f=>`<img src="assets/flags/${f}" alt="" wid
     if(wide){
       const cc=document.querySelector('.cc'),top=cc.querySelector('.cc-top'),
             band=cc.querySelector('.cc-band'),calc=cc.querySelector('.calc');
-      gsap.set(cc,{clipPath:'inset(0px 0px 0px 0px round 32px)'});
       // After stacking, the centre card's original height is still in the layout (clipped away).
       // Pull the next section up by that hidden amount so no empty gap is left behind.
       const ways=document.querySelector('#ways'),side=[...document.querySelectorAll('.cards3>.hc')];
@@ -1031,7 +1107,6 @@ $('flags').innerHTML=F.concat(F).map(f=>`<img src="assets/flags/${f}" alt="" wid
         .to(band,{y:()=>-band.offsetTop,boxShadow:'0 -18px 40px -18px rgba(110,17,49,.45)'})
         .to(calc,{y:()=>-band.offsetTop},'<') // calculator stays attached under layer 2
         .to(calc,{y:()=>-calc.offsetTop,boxShadow:'0 -18px 40px -18px rgba(110,17,49,.45)'})
-        .to(cc,{clipPath:()=>'inset(0px 0px '+(cc.offsetHeight-calc.offsetHeight)+'px 0px round 32px)'},'<')
         .to({},{duration:.25}); // short hold on the calculator before releasing
     }
 
