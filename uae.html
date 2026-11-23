@@ -153,50 +153,9 @@ main [id],.grey [id]{scroll-margin-top:96px}
 .hero .lead{font-size:20px;font-weight:600;line-height:1.4;max-width:34ch;margin:0 auto 24px}
 .hero-cards{position:relative;margin-top:64px}
 .hero-cards::after{content:"";position:absolute;left:0;right:0;bottom:0;top:300px;background:#fff;z-index:0}
-.cards3{position:relative;z-index:1;display:grid;grid-template-columns:456fr 628fr 456fr;gap:30px;align-items:start;text-align:left}
-.hc{border-radius:32px;padding:30px;min-height:632px;display:flex;flex-direction:column;overflow:hidden;color:#fff}
-.hc h2,.cc-top h2{font-size:26px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin-bottom:16px}
-.hc p,.cc-top p{font-size:18px;line-height:1.4}
-.hc-deep{background:var(--pale);color:var(--ink)}
-.hc-deep h2,.hc-deep .ulink{color:var(--brand)}
-.hc-deep .rates li{background:#fff}
-.hc-deep .rates span{color:var(--text)}
-.hc-deep .rates b{color:var(--deep)}
-.hc-deep .rates-note{color:var(--text)}
-.hc-plum{background:var(--plum)}
-.hc-plum h2,.hc-plum .ulink{color:var(--peach)}
-/* left card visual: rates */
-.rates-win{margin:auto 0 0;height:288px;overflow:hidden;position:relative;-webkit-mask:linear-gradient(transparent,#000 14%,#000 86%,transparent);mask:linear-gradient(transparent,#000 14%,#000 86%,transparent)}
-.rates{list-style:none;display:grid;gap:8px;padding:0 6px;animation:ratesUp 16s linear infinite}
-.rates-win:hover .rates,.rates-win:focus-within .rates{animation-play-state:paused}
-@keyframes ratesUp{to{transform:translate3d(0,calc(-50% - 4px),0)}}
-.rates li{transition:transform .35s cubic-bezier(.2,0,0,1),filter .35s,opacity .35s,box-shadow .35s}
-.rates-win:hover .rates li{filter:blur(2px);opacity:.55}
-.rates-win .rates li:hover{filter:none;opacity:1;transform:scale(1.05);box-shadow:0 10px 24px -12px rgba(110,17,49,.45)}
-@media (prefers-reduced-motion:reduce){.rates-win{height:auto;-webkit-mask:none;mask:none}.rates{animation:none}.rates li[aria-hidden]{display:none}}
-.rates li{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.08);border-radius:9999px;padding:8px 18px 8px 8px}
-.rates img{width:40px;height:40px;border-radius:50%;object-fit:cover}
-.rates span{flex:1;font-size:15px;color:rgba(255,255,255,.85)}
-.rates b{font-weight:700;font-size:17px;font-variant-numeric:tabular-nums}
-.rates-note{font-size:13px;color:rgba(255,255,255,.7);margin-top:12px}
-/* right card visual: first-transfer ticket (stageshow-style: one object, one action, the result holds) */
-.ticket-stage{margin:auto 0;position:relative;padding:8px 0}
-.ticket{position:relative;background:#fff;color:var(--ink);border-radius:20px;padding:18px 18px 16px;box-shadow:0 24px 40px -20px rgba(40,4,16,.55);
-  -webkit-mask:radial-gradient(circle 9px at 0 62%,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 9px at 100% 62%,transparent 98%,#000) right/51% 100% no-repeat;
-          mask:radial-gradient(circle 9px at 0 62%,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 9px at 100% 62%,transparent 98%,#000) right/51% 100% no-repeat}
-.tk-top{display:flex;align-items:center;gap:12px;padding-bottom:14px;border-bottom:1.5px dashed var(--line)}
-.tk-flags{display:flex}.tk-flags img{width:30px;height:30px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px #fff}.tk-flags img+img{margin-left:-8px}
-.tk-tx{display:grid;line-height:1.25;padding-right:84px}.tk-tx b{font-size:15px}.tk-tx small{font-size:12px;color:var(--text)}
-.tk-steps{display:flex;align-items:center;gap:6px;margin-top:16px}
-.tk-dot{width:12px;height:12px;border-radius:50%;background:var(--line);flex:none;transition:background-color .3s}
-.tk-dot.on{background:var(--brand)}
-.tk-line{flex:1;height:3px;border-radius:3px;background:var(--line);overflow:hidden}
-.tk-line i{display:block;height:100%;background:var(--brand);transform:scaleX(0);transform-origin:0 50%}
-.tk-labels{display:flex;justify-content:space-between;margin-top:8px;font-size:11px;font-weight:600;color:var(--text)}
-.tk-stamp{position:absolute;right:12px;top:8px;width:78px;height:78px;border-radius:50%;display:grid;place-items:center;text-align:center;
-  color:var(--brand);background:#FBEEF2;box-shadow:inset 0 0 0 3px var(--brand),inset 0 0 0 7px #FBEEF2,inset 0 0 0 8.5px var(--brand);
-  font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;line-height:1.15;transform:rotate(-12deg)}
-@media (max-width:1180px){.ticket-stage{max-width:380px}}
+.cards3{position:relative;z-index:1;text-align:left}
+.cc-top h2{font-size:26px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin-bottom:16px}
+.cc-top p{font-size:18px;line-height:1.4}
 
 /* centre card: calculator */
 .cc{border-radius:32px;position:relative}
@@ -231,9 +190,16 @@ main [id],.grey [id]{scroll-margin-top:96px}
 .calc .btn{width:100%;margin-top:12px}
 .calc-note{font-size:14px;color:var(--text);margin-top:12px}
 @media (max-width:1180px){
-  .cards3{grid-template-columns:minmax(0,1fr);max-width:628px;margin:0 auto}
-  .cc{order:-1}.hc{min-height:0;gap:28px}
   .hero-cards::after{top:200px}
+}
+/* full-width centre card: each layer splits into two columns */
+@media (min-width:900px){
+  .cc-top{display:flex;justify-content:space-between;align-items:flex-end;gap:48px}
+  .cc-top h2{margin:0}.cc-top p{text-align:right}
+  .cc-band{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,560px);column-gap:64px;align-items:end}
+  .cc-band .d{grid-row:span 2;margin:0;font-size:clamp(32px,2.8vw,52px)}
+  .calc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:64px;padding:28px 40px 36px}
+  .calc>.guar{grid-column:1/-1}.calc-out .facts{margin-top:14px}
 }
 
 /* ---------- 2. Wise "save on hidden fees" panel -> ways to send ---------- */
@@ -272,7 +238,7 @@ main [id],.grey [id]{scroll-margin-top:96px}
 }
 
 /* ---------- 3. Wise "we move billions" row -> benefits ---------- */
-.trust{padding:136px 0 40px;text-align:center}
+.trust{padding:112px 0 0;text-align:center}
 .trust h2{margin-bottom:48px}
 .tr-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:left}
 .tr{display:flex;gap:20px;align-items:center}
@@ -283,7 +249,7 @@ main [id],.grey [id]{scroll-margin-top:96px}
 @media (max-width:600px){.tr-grid{grid-template-columns:1fr}.tr i{width:72px;height:72px}}
 
 /* ---------- 4. Wise "banks and businesses" -> app ---------- */
-.biz{padding:136px 0 0;text-align:center}
+.biz{padding:64px 0 0;text-align:center}
 .biz h2.d{font-size:clamp(44px,4.8vw,80px);margin-bottom:32px}
 .tabs{display:inline-flex;gap:24px;margin-bottom:40px}
 .tabs span{padding:6px 2px;font-weight:600;font-size:17px;color:var(--text);border-bottom:3px solid var(--line)}
@@ -497,8 +463,8 @@ main [id],.grey [id]{scroll-margin-top:96px}
 @media (max-width:767px){
   .hero-cards{margin-top:40px}
   .panel{margin-top:40px;padding:56px 16px 40px}
-  .trust{padding:64px 0 16px}.trust h2{margin-bottom:28px}
-  .biz{padding:56px 0 0}.biz h2.d{margin-bottom:20px}.tabs{margin-bottom:24px}
+  .trust{padding:56px 0 0}.trust h2{margin-bottom:28px}
+  .biz{padding:40px 0 0}.biz h2.d{margin-bottom:20px}.tabs{margin-bottom:24px}
   .strip{margin-top:40px}
   .safe{padding:56px 0}.safe .lead{margin-bottom:20px}.steps{margin-top:36px;gap:36px}.s-art{margin-bottom:18px}
   .loved{padding:8px 0 40px}.loved .grid{gap:24px}.loved-l{gap:24px}.qs{gap:16px}
@@ -560,7 +526,7 @@ main [id],.grey [id]{scroll-margin-top:96px}
 
 <main id="main">
 
-<!-- 1. Hero: Wise centred headline + three cards -->
+<!-- 1. Hero: centred headline + full-width calculator card -->
 <section class="hero" aria-labelledby="hero-h">
   <div class="wrap intro">
     <h1 class="d" id="hero-h" data-px="90" data-top><span class="ln"><span>Send money home.</span></span><span class="ln"><span>Know what arrives.</span></span></h1>
@@ -572,14 +538,8 @@ main [id],.grey [id]{scroll-margin-top:96px}
     <div class="wide">
       <div class="cards3 intro">
 
-        <article class="hc hc-deep" aria-labelledby="rates-h" id="rates">
-          <h2 id="rates-h">Today’s rates</h2>
-          <p>Check the rate before you send.<br><a class="ulink" href="#" data-todo="Full rates page URL">See all rates</a></p>
-          <div class="rates-win"><ul class="rates" id="rate-list"></ul></div>
-          <p class="rates-note">For AED 1. Live rates, updated through the day.</p>
-        </article>
 
-        <div class="cc">
+        <div class="cc" id="rates">
           <div class="cc-top">
             <h2>Live rates. Delivered in minutes.</h2>
             <p>Rate and fee shown up front.<br><a class="ulink" href="#how">How it works</a></p>
@@ -600,6 +560,7 @@ main [id],.grey [id]{scroll-margin-top:96px}
           </div>
           <form class="calc" id="calc" novalidate aria-label="Transfer calculator">
             <div class="guar"><span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg><span id="rate-line">1 AED = 22.64 INR</span></span></div>
+            <div class="calc-in">
             <label class="f-lab" for="send-amt">You send</label>
             <div class="f-row" id="r-send">
               <span class="cur"><img src="assets/flags/ae.svg" alt="" width="28" height="28">AED</span>
@@ -611,6 +572,8 @@ main [id],.grey [id]{scroll-margin-top:96px}
               <span class="cur"><img id="recv-flag" src="assets/flags/in.svg" alt="" width="28" height="28"><span id="recv-code">INR</span></span>
               <input class="amt" id="recv-amt" inputmode="decimal" autocomplete="off" value="2,264.00" aria-describedby="calc-err">
             </div>
+            </div>
+            <div class="calc-out">
             <ul class="facts">
               <li><span class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><small>Arrives</small><strong>In minutes</strong></div></li>
               <li><span class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg></span><div><small>Fee</small><strong>Shown up front</strong></div><span class="val" id="s-fee">AED 1.00</span></li>
@@ -619,22 +582,10 @@ main [id],.grey [id]{scroll-margin-top:96px}
             <p class="err" id="calc-err" aria-live="polite"></p>
             <button class="btn btn-brand" type="submit" id="calc-btn">Send money</button>
             <p class="calc-note">Indicative rate. Confirmed before you pay.</p>
+            </div>
           </form>
         </div>
 
-        <article class="hc hc-plum" aria-labelledby="offer-h">
-          <h2 id="offer-h">A little extra on your first transfer.</h2>
-          <p>Enjoy a welcome benefit on your first money transfer.<br><a class="ulink" href="#" data-todo="Offer page URL">See offer</a></p>
-          <div class="ticket-stage" aria-hidden="true">
-            <div class="ticket" id="ticket">
-              <div class="tk-top"><span class="tk-flags"><img src="assets/flags/ae.svg" alt=""><img src="assets/flags/in.svg" alt=""></span>
-                <span class="tk-tx"><b>Your first transfer</b><small>AED to INR</small></span></div>
-              <div class="tk-steps"><span class="tk-dot"></span><span class="tk-line"><i></i></span><span class="tk-dot"></span><span class="tk-line"><i></i></span><span class="tk-dot"></span></div>
-              <div class="tk-labels"><span>Sent</span><span>On its way</span><span>Delivered</span></div>
-              <div class="tk-stamp"><span>Welcome<br>benefit</span></div>
-            </div>
-          </div>
-        </article>
 
       </div>
     </div>
@@ -913,10 +864,6 @@ ccyEl.addEventListener('change',setCcy);
 $('calc').addEventListener('submit',e=>{e.preventDefault();if(!btn.disabled&&SEND_URL)location.href=SEND_URL});
 setCcy();
 
-{const row=(k,hidden)=>{const c=RATES[k];return `<li${hidden?' aria-hidden="true"':''}><img src="${c.flag}" alt="" width="40" height="40"><span>${c.name}</span><b>${rateTxt(c.r)} ${k}</b></li>`};
- const keys=Object.keys(RATES);
- // second copy makes the upward loop seamless; screen readers get the list once
- $('rate-list').innerHTML=keys.map(k=>row(k)).join('')+keys.map(k=>row(k,true)).join('');}
 
 /* Header: hides on scroll down, returns on scroll up; stays visible while focused */
 const hdr=$('hdr'),mnav=$('mnav'),mbtn=$('menu-btn'),mclose=$('menu-close');
@@ -1019,28 +966,6 @@ $('flags').innerHTML=F.concat(F).map(f=>`<img src="assets/flags/${f}" alt="" wid
     }
   }
 
-  /* Offer card: a first-transfer ticket travels Sent -> On its way -> Delivered, then the welcome stamp lands on it */
-  const tk=document.getElementById('ticket');
-  if(tk&&window.anime){
-    const dots=[...tk.querySelectorAll('.tk-dot')],lines=[...tk.querySelectorAll('.tk-line i')],stamp=tk.querySelector('.tk-stamp');
-    const tkReset=()=>{dots.forEach(d=>d.classList.remove('on'));anime.set(lines,{scaleX:0});anime.set(stamp,{opacity:0,scale:2.2,rotate:-30});anime.set(tk,{opacity:1,translateY:0})};
-    if(reduce){dots.forEach(d=>d.classList.add('on'));anime.set(lines,{scaleX:1})}
-    else{
-      cycle(tk.closest('.ticket-stage'),(pass,next)=>{
-        tkReset();
-        const tl=anime.timeline({autoplay:false,complete:next});
-        tl.add({targets:tk,translateY:[36,0],opacity:[0,1],duration:700,easing:'easeOutCubic'})
-          .add({duration:200,complete:()=>dots[0].classList.add('on')})
-          .add({targets:lines[0],scaleX:[0,1],duration:900,easing:'easeInOutCubic',complete:()=>dots[1].classList.add('on')})
-          .add({targets:lines[1],scaleX:[0,1],duration:900,easing:'easeInOutCubic',complete:()=>dots[2].classList.add('on')})
-          .add({targets:stamp,opacity:[0,1],scale:[2.2,1],rotate:[-30,-12],duration:520,easing:'easeOutBack'},'+=250')
-          .add({targets:tk,translateY:[0,4,0],duration:320,easing:'easeOutQuad'},'-=260')
-          .add({duration:2600})
-          .add({targets:tk,translateY:[0,-24],opacity:[1,0],duration:420,easing:'easeInCubic'});
-        return tl;
-      });
-    }
-  }
 
   /* Step 2: cursor picks Ravi, chooses App, presses Pay; the button confirms on itself */
   const tile=document.querySelector('.pay-tile');
@@ -1168,10 +1093,9 @@ $('flags').innerHTML=F.concat(F).map(f=>`<img src="assets/flags/${f}" alt="" wid
             band=cc.querySelector('.cc-band'),calc=cc.querySelector('.calc');
       // After stacking, the centre card's original height is still in the layout (clipped away).
       // Pull the next section up by that hidden amount so no empty gap is left behind.
-      const ways=document.querySelector('#ways'),side=[...document.querySelectorAll('.cards3>.hc')];
+      const ways=document.querySelector('#ways');
       const closeGap=()=>{
-        const shown=Math.max(calc.offsetHeight,...side.map(e=>e.offsetHeight));
-        ways.style.marginTop=-(cc.offsetHeight-shown)+'px'};
+        ways.style.marginTop=-(cc.offsetHeight-calc.offsetHeight)+'px'};
       closeGap();ScrollTrigger.addEventListener('refreshInit',closeGap);
       undoGap=()=>{ScrollTrigger.removeEventListener('refreshInit',closeGap);ways.style.marginTop=''};
       const stack=gsap.timeline({defaults:{ease:'none'},scrollTrigger:{
