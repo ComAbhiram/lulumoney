@@ -250,10 +250,7 @@ main [id],.grey [id]{scroll-margin-top:96px}
 
 /* ---------- 4. Wise "banks and businesses" -> app ---------- */
 .biz{padding:64px 0 0;text-align:center}
-.biz h2.d{font-size:clamp(44px,4.8vw,80px);margin-bottom:32px}
-.tabs{display:inline-flex;gap:24px;margin-bottom:40px}
-.tabs span{padding:6px 2px;font-weight:600;font-size:17px;color:var(--text);border-bottom:3px solid var(--line)}
-.tabs span.on{color:var(--ink);border-color:var(--ink)}
+.biz h2.d{font-size:clamp(44px,4.8vw,80px);margin-bottom:56px}
 .biz-card{display:grid;grid-template-columns:1fr 1fr;border-radius:32px;overflow:hidden;background:var(--deep);text-align:left;min-height:684px}
 .biz-media{position:relative;background:#F4F1EE}
 .biz-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
@@ -464,7 +461,7 @@ main [id],.grey [id]{scroll-margin-top:96px}
   .hero-cards{margin-top:40px}
   .panel{margin-top:40px;padding:56px 16px 40px}
   .trust{padding:56px 0 0}.trust h2{margin-bottom:28px}
-  .biz{padding:40px 0 0}.biz h2.d{margin-bottom:20px}.tabs{margin-bottom:24px}
+  .biz{padding:40px 0 0}.biz h2.d{margin-bottom:28px}
   .strip{margin-top:40px}
   .safe{padding:56px 0}.safe .lead{margin-bottom:20px}.steps{margin-top:36px;gap:36px}.s-art{margin-bottom:18px}
   .loved{padding:8px 0 40px}.loved .grid{gap:24px}.loved-l{gap:24px}.qs{gap:16px}
@@ -629,11 +626,10 @@ main [id],.grey [id]{scroll-margin-top:96px}
   </div>
 </section>
 
-<!-- 4. App: Wise tabs + split card + flag strip -->
+<!-- 4. App: split card + flag strip -->
 <section class="biz" id="app" aria-labelledby="app-h">
   <div class="wrap">
     <h2 class="d" id="app-h" data-px="50">Everything money. One app.</h2>
-    <div class="tabs" aria-hidden="true" data-px="40"><span class="on">Send</span><span>Exchange</span><span>Track</span></div>
     <div class="biz-card">
       <div class="biz-media"><img src="assets/photos/app-woman-phone.jpg" alt="Woman smiling at her phone on a sofa" width="1200" height="1200" loading="lazy"></div>
       <div class="biz-text" data-px="30">
@@ -1119,7 +1115,7 @@ $('flags').innerHTML=F.concat(F).map(f=>`<img src="assets/flags/${f}" alt="" wid
       scrollTrigger:{trigger:'.cmp',start:'top 70%'}});
 
     // Generic staggered reveals
-    const rev='.trust .h-sec,.tr,.tabs,.biz-text>*,.safe .lead,.safe .wrap>.btn,.steps>li,.notes,.dests .lead,.d-grid li,.f-cols>div,.f-mid,.app .ctas,.faq .lead,.faq details';
+    const rev='.trust .h-sec,.tr,.biz-text>*,.safe .lead,.safe .wrap>.btn,.steps>li,.notes,.dests .lead,.d-grid li,.f-cols>div,.f-mid,.app .ctas,.faq .lead,.faq details';
     gsap.set(rev,{yPercent:(i,el)=>Math.min(40,5000/Math.max(el.offsetHeight,1)),autoAlpha:0});
     ScrollTrigger.batch(rev,{start:'top 90%',once:true,
       onEnter:els=>gsap.to(els,{yPercent:0,autoAlpha:1,duration:.9,ease:'power3.out',stagger:.08,overwrite:'auto'})});
