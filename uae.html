@@ -115,7 +115,7 @@ button,input,select{font:inherit;color:inherit}
 .pre .hero,.pre .hdr,.pre .hdr-space{background:#fff}
 .pre .hero .d{color:var(--brand)}
 .pre .hdr .logo,.pre .hdr nav,.pre .hdr-r{opacity:0;visibility:hidden}
-.pre .hero .lead,.pre .hero .intro>.btn,.pre .cards3>*{opacity:0;visibility:hidden}
+.pre .hero .intro>.btn,.pre .cards3>*{opacity:0;visibility:hidden}
 main [id],.grey [id]{scroll-margin-top:96px}
 .menu-btn{display:none;align-items:center;gap:8px;height:40px;padding:0 14px;border-radius:9999px;border:0;background:rgba(255,255,255,.14);color:#fff;font-weight:600;font-size:16px;cursor:pointer}
 .menu-btn:hover{background:rgba(255,255,255,.22)}
@@ -150,7 +150,6 @@ main [id],.grey [id]{scroll-margin-top:96px}
 .hero .d,.panel .d,.mission .d{color:#fff}
 .hero{background:var(--brand);color:#fff;text-align:center;padding:40px 0 0}
 .hero h1{font-size:clamp(52px,6.6vw,126px);margin:0 auto 28px}
-.hero .lead{font-size:20px;font-weight:600;line-height:1.4;max-width:34ch;margin:0 auto 24px}
 .hero-cards{position:relative;margin-top:64px}
 .hero-cards::after{content:"";position:absolute;left:0;right:0;bottom:0;top:300px;background:#fff;z-index:0}
 .cards3{position:relative;z-index:1;text-align:left}
@@ -527,7 +526,6 @@ main [id],.grey [id]{scroll-margin-top:96px}
 <section class="hero" aria-labelledby="hero-h">
   <div class="wrap intro">
     <h1 class="d" id="hero-h" data-px="90" data-top><span class="ln"><span>Send money home.</span></span><span class="ln"><span>Know what arrives.</span></span></h1>
-    <p class="lead" data-px="60" data-top>Clear rate. Clear fee. No hidden charges.</p>
     <a class="btn btn-deep" href="#calc">Send money</a>
   </div>
 
@@ -1029,7 +1027,7 @@ $('flags').innerHTML=F.concat(F).map(f=>`<img src="assets/flags/${f}" alt="" wid
 
     // Hero intro. With the preloader: white page, burgundy logo + headline; the first scroll hands over to the hero:
     // the page turns burgundy, the headline turns white, and the logo flies into the header and turns white.
-    const rest=(tl,at)=>tl.fromTo('.hero .lead, .hero .intro>.btn',{yPercent:60,autoAlpha:0},{yPercent:0,autoAlpha:1,stagger:.08,duration:.8,ease:'power4.out'},at)
+    const rest=(tl,at)=>tl.fromTo('.hero .intro>.btn',{yPercent:60,autoAlpha:0},{yPercent:0,autoAlpha:1,stagger:.08,duration:.8,ease:'power4.out'},at)
       .fromTo('.cards3>*',{yPercent:18,autoAlpha:0},{yPercent:0,autoAlpha:1,stagger:.12,duration:1.2,ease:'power4.out'},'<+.15');
     if(!root.classList.contains('pre')){
       const tl=gsap.timeline({defaults:{ease:'power4.out',duration:1.1}}).set('.intro',{autoAlpha:1}).from('#hero-h .ln>span',{yPercent:110,stagger:.12});
