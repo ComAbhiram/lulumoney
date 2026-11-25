@@ -1,0 +1,441 @@
+// "From a letter to a lifeline" (assets/js/money-story/). White, thin monochrome line art, LuLu green used
+// sparingly, very soft shadows, lots of white space. The stage is held by position: sticky inside this section only.
+// The footer slides up over the last 85vh of the section above it on desktop, so a tail of that height follows.
+.story
+  position: relative
+  background: #fff
+
+.story__sr
+  position: absolute
+  width: 1px
+  height: 1px
+  margin: -1px
+  padding: 0
+  overflow: hidden
+  clip: rect(0 0 0 0)
+  white-space: nowrap
+  border: 0
+
+.story__track
+  height: 500vh
+
+.story__stage
+  position: sticky
+  top: 0
+  height: 100vh
+  height: 100svh
+  overflow: hidden
+  background: #fff
+
+.story__svg
+  position: absolute
+  inset: 0
+  display: block
+  width: 100%
+  height: 100%
+
+// a quiet line at the top, so the stage is never empty as it scrolls into view
+.story__eyebrow
+  position: absolute
+  top: max(56px, 12vh)
+  left: 0
+  right: 0
+  margin: 0
+  padding-inline: 20px
+  text-align: center
+  font-size: clamp(1.1rem, 2.2vw, 1.9rem)
+  font-weight: 400
+  letter-spacing: -0.01em
+  color: #1d1d1f
+
+.story__hint
+  position: absolute
+  left: 50%
+  bottom: max(24px, 5vh)
+  display: flex
+  flex-direction: column
+  align-items: center
+  gap: 10px
+  transform: translateX(-50%)
+  font-size: 0.72rem
+  letter-spacing: 0.3em
+  text-transform: uppercase
+  color: #9aa0a8
+  i
+    display: block
+    width: 1px
+    height: 34px
+    background: linear-gradient(#9aa0a8, rgba(154, 160, 168, 0))
+    animation: story-hint 2.4s ease-in-out infinite
+
+@keyframes story-hint
+  0%, 100%
+    transform: scaleY(0.4)
+    transform-origin: top
+    opacity: 0.4
+  50%
+    transform: scaleY(1)
+    opacity: 1
+
+.story__finale
+  position: absolute
+  left: 0
+  right: 0
+  bottom: max(36px, 8vh)
+  padding-inline: 20px
+  text-align: center
+  p
+    margin: 0
+    font-size: clamp(1.5rem, 3.1vw, 3rem)
+    font-weight: 400
+    line-height: 1.15
+    letter-spacing: -0.02em
+    color: #1d1d1f
+
+.story__finale .story__finale-accent
+  color: #00a651
+
+.story__brand
+  display: block
+  margin-top: 18px
+  font-size: 0.72rem
+  letter-spacing: 0.3em
+  text-transform: uppercase
+  color: #9aa0a8
+
+.story__tail
+  display: none
+
+// without the script: just the closing words, no tall track
+.story:not(.is-ready)
+  .story__track
+    height: auto
+  .story__stage
+    position: relative
+    height: auto
+    padding-block: 18vh
+  .story__svg,
+  .story__apps,
+  .story__eyebrow,
+  .story__hint
+    display: none
+  .story__finale
+    position: static
+
+.story.is-static
+  .story__track
+    height: auto
+  .story__stage
+    position: relative
+  .story__hint
+    display: none
+
+@media (min-width: 992px)
+  .story__track
+    height: 620vh
+  .story__tail
+    display: block
+    height: 85vh
+
+// the scene
+.st-line
+  fill: none
+  stroke: #2b2b30
+  stroke-width: 1.6
+  stroke-linecap: round
+  stroke-linejoin: round
+
+.st-soft
+  stroke-opacity: 0.45
+
+.story.is-ready
+  .st-draw,
+  .st-ink,
+  .st-edge
+    stroke-dasharray: 1
+
+.st-floor
+  fill: rgba(16, 17, 18, 0.05)
+
+.st-paper
+  fill: #fff
+  stroke: #2b2b30
+  stroke-width: 1.2
+  stroke-opacity: 0.55
+  stroke-linejoin: round
+
+.st-envback .st-paper
+  fill: #f4f1ea
+
+.st-flapfill
+  fill: #fbfaf6
+
+.st-notes
+  filter: url(#st-shadow)
+
+.st-front
+  fill: #fff
+
+.st-ink
+  fill: none
+  stroke: #2d2f3a
+  stroke-width: 1.7
+  stroke-linecap: round
+  stroke-linejoin: round
+
+.st-seal-body
+  fill: #3a3d45
+
+.st-seal-ring
+  fill: none
+  stroke: rgba(255, 255, 255, 0.55)
+  stroke-width: 2
+
+.st-seal-mark
+  fill: none
+  stroke: #fff
+  stroke-width: 3
+  stroke-linecap: round
+  stroke-linejoin: round
+
+.st-world
+  fill: none
+  stroke: #1d1d1f
+  stroke-opacity: 0.16
+  stroke-width: 3.4
+  stroke-linecap: round
+
+.st-edge
+  fill: none
+  stroke: #8e9299
+  stroke-opacity: 0.8
+  stroke-width: 1.4
+  stroke-linecap: round
+
+.st-halo
+  fill: #00a651
+
+.st-dot
+  fill: #9aa0a8
+
+.st-label
+  fill: #1d1d1f
+  font-size: calc(var(--ls, 12) * 1px)
+  font-weight: 500
+  letter-spacing: 0.02em
+
+.st-ring
+  fill: none
+  stroke: #00a651
+  stroke-width: 2.5
+
+.st-done-disc
+  fill: #fff
+  stroke: #00a651
+  stroke-width: 2.5
+
+.st-done-tick
+  fill: none
+  stroke: #00a651
+  stroke-width: 3
+  stroke-linecap: round
+  stroke-linejoin: round
+
+// the banknotes (neutral line art, like everything else on the desk)
+.st-notefill
+  fill: #fbfbf8
+
+.st-nd
+  fill: none
+  stroke: #2b2b30
+  stroke-width: 1.3
+  stroke-linecap: round
+  stroke-linejoin: round
+
+// the travelling money: a neutral note inside a soft green glow
+.st-token-halo
+  fill: rgba(0, 166, 81, 0.14)
+  stroke: #00a651
+  stroke-opacity: 0.45
+  stroke-width: 1.2
+
+.st-token-note
+  fill: #fff
+  stroke: #2b2b30
+  stroke-width: 1.4
+
+.st-token-coin
+  fill: none
+  stroke: #2b2b30
+  stroke-width: 1.2
+
+.st-token-line
+  fill: none
+  stroke: #2b2b30
+  stroke-opacity: 0.5
+  stroke-width: 1.2
+  stroke-linecap: round
+
+// the two apps: neutral phones, green only for the confirmations and the instant line
+.story__apps
+  position: absolute
+  inset: 0 0 25vh 0
+  display: flex
+  align-items: center
+  justify-content: center
+  gap: clamp(14px, 5vw, 96px)
+  --pw: min(37vw, 24vh)
+
+.story-app
+  width: var(--pw)
+
+.story-app__phone
+  position: relative
+  display: flex
+  flex-direction: column
+  align-items: center
+  width: 100%
+  aspect-ratio: 1 / 1.9
+  padding: calc(var(--pw) * 0.1) calc(var(--pw) * 0.08) calc(var(--pw) * 0.08)
+  border: 1.5px solid #2b2b30
+  border-radius: calc(var(--pw) * 0.15)
+  background: #fff
+  box-shadow: 0 calc(var(--pw) * 0.1) calc(var(--pw) * 0.22) rgba(16, 17, 18, 0.08)
+  font-size: calc(var(--pw) * 0.056)
+  color: #1d1d1f
+  text-align: center
+
+.story-app__notch
+  position: absolute
+  top: calc(var(--pw) * 0.035)
+  left: 50%
+  width: 26%
+  height: calc(var(--pw) * 0.05)
+  transform: translateX(-50%)
+  border-radius: 99px
+  background: #2b2b30
+
+.story-app__brand
+  margin-top: calc(var(--pw) * 0.04)
+  font-size: 0.8em
+  font-weight: 500
+  letter-spacing: 0.2em
+  text-transform: uppercase
+  color: #8a8f98
+
+.story-app__body
+  position: relative
+  flex: 1
+  width: 100%
+  display: grid
+  place-items: center
+
+.story-app__pending,
+.story-app__done
+  grid-area: 1 / 1
+  display: flex
+  flex-direction: column
+  align-items: center
+  gap: 0.5em
+
+.story-app__pending
+  color: #8a8f98
+  p
+    margin: 0
+    font-size: 1.05em
+  small
+    font-size: 0.8em
+
+.story-app__spinner
+  width: 2.2em
+  height: 2.2em
+  border: 1.5px solid #d9dce1
+  border-top-color: #2b2b30
+  border-radius: 50%
+  animation: story-spin 1.2s linear infinite
+
+@keyframes story-spin
+  to
+    transform: rotate(360deg)
+
+.story-app__done
+  h3
+    margin: 0.3em 0 0
+    font-size: 1.35em
+    font-weight: 600
+    letter-spacing: -0.01em
+  small
+    font-size: 0.8em
+    color: #8a8f98
+
+.story-app__amount
+  margin: 0
+  font-size: 1.1em
+  font-weight: 500
+
+.story-app__check
+  width: 4.6em
+  height: 4.6em
+
+.story-app__halo
+  fill: rgba(0, 166, 81, 0.18)
+
+.story-app__ring
+  fill: #fff
+  stroke: #00a651
+  stroke-width: 2.4
+
+.story-app__tick
+  fill: none
+  stroke: #00a651
+  stroke-width: 3.2
+  stroke-linecap: round
+  stroke-linejoin: round
+  stroke-dasharray: 1
+
+.story-app__rows
+  display: flex
+  flex-direction: column
+  gap: 0.6em
+  width: 78%
+  i
+    display: block
+    height: 0.4em
+    border-radius: 99px
+    background: #eceef1
+    &:last-child
+      width: 62%
+
+// the instant line between the two phones
+.story-link
+  position: relative
+  flex: 0 1 clamp(30px, 8vw, 150px)
+  height: 2px
+  align-self: center
+
+.story-link__line
+  position: absolute
+  inset: 0
+  background: #00a651
+  border-radius: 2px
+  opacity: 0.8
+
+.story-link__dot
+  position: absolute
+  top: 50%
+  left: 0
+  width: 9px
+  height: 9px
+  margin: -4.5px 0 0 -4.5px
+  border-radius: 50%
+  background: #00a651
+  box-shadow: 0 0 0 5px rgba(0, 166, 81, 0.18)
+
+@media (min-width: 992px)
+  .story__apps
+    --pw: min(21vw, 31vh, 300px)
+
+.story.is-static .story__apps
+  position: relative
+  inset: auto
+  padding-block: 40px

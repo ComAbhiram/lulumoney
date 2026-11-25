@@ -1,0 +1,48 @@
+// App Store download badge under the hero "Download the App" button.
+// Matches the .pre-order-button style: off-white fill, pill radius, dark text, translucent hover.
+.store-badge
+  display: flex
+  align-items: center
+  gap: 10px
+  width: fit-content
+  margin-top: 0
+  padding: 0 clamp(18px, 1.6vw, 30px) 0 clamp(16px, 1.4vw, 26px)
+  height: clamp(44px, 3.4vw, 62px)
+  border-radius: 10.08vw
+  background-color: rgb(255, 254, 252)
+  color: rgba(16, 17, 18, 1)
+  font-family: 'Figtree', sans-serif
+  text-decoration: none
+  transition: background-color 0.3s ease
+
+.store-badge__icon
+  flex-shrink: 0
+  width: clamp(20px, 1.6vw, 30px)
+  height: clamp(20px, 1.6vw, 30px)
+  fill: currentColor
+
+.store-badge__text
+  display: flex
+  flex-direction: column
+  line-height: 1.1
+  white-space: nowrap
+
+.store-badge__small
+  font-size: clamp(9px, 0.65vw, 12px)
+  letter-spacing: 0.02em
+
+.store-badge__store
+  font-size: clamp(15px, 1.2vw, 22px)
+  font-weight: 600
+
+.store-badge:focus-visible
+  outline: 2px solid rgb(255, 254, 252)
+  outline-offset: 3px
+
+@media (hover: hover)
+  .store-badge:hover
+    background-color: rgba(255, 254, 252, 0.2)
+
+@media (prefers-reduced-motion: reduce)
+  .store-badge
+    transition: none

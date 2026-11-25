@@ -1,0 +1,174 @@
+// "One App. No Borders." section: a half globe of land dots rising from the bottom, five currency
+// coins arcing above it. assets/js/globe.js draws the globe on a canvas and sets --p (0 to 1,
+// scroll progress through the pinned part) on the section; the coins and heading drift with --p.
+.globe
+  position: relative
+  height: 240vh
+  background-color: #fffefc
+
+.globe__camera
+  position: sticky
+  top: 0
+  height: 100vh
+  overflow: hidden
+  display: flex
+  flex-direction: column
+  background: linear-gradient(180deg, #fffefc 0%, #eafaf1 16%, #aeeacb 40%, #2bbd78 70%, #00923f 100%)
+
+// Title and text keep their natural height at the top; the coins and the globe live in the stage
+// below them (the rest of the screen), so the two can never overlap, whatever the screen shape.
+.globe__content
+  position: relative
+  z-index: 3
+  flex: none
+  padding-top: 6vh
+  text-align: center
+
+.globe__stage
+  position: relative
+  flex: 1 1 auto
+  min-height: 0
+
+.globe__title
+  margin: 0
+  font-size: min(6.4vw, 10.2vh)
+  font-weight: 500
+  line-height: 1.05
+  letter-spacing: -0.03em
+  color: #101112
+
+.globe__line
+  display: block
+
+.globe__phrase
+  white-space: nowrap
+
+.globe__accent
+  color: #009a49
+
+.globe__text
+  max-width: 44vw
+  margin: 2.4vh auto 0
+  padding-bottom: 1.5vh
+  font-size: min(1.2vw, 1.9vh)
+  line-height: 1.5
+  color: rgba(16, 17, 18, 0.72)
+
+.globe__canvas
+  position: absolute
+  inset: 0
+  z-index: 1
+  width: 100%
+  height: 100%
+  pointer-events: none
+
+.globe__coins
+  position: absolute
+  inset: 0
+  z-index: 2
+  margin: 0
+  padding: 0
+  list-style: none
+  pointer-events: none
+
+.globe__coin
+  position: absolute
+  left: calc(var(--x) * 1%)
+  top: calc(var(--y) * 1%)
+  display: flex
+  flex-direction: column
+  align-items: center
+  transform: translate(-50%, -50%)
+  translate: 0 calc(var(--p, 0) * var(--rise, -6) * 1vh)
+
+.globe__disc
+  display: grid
+  place-items: center
+  width: min(7.4vw, 12vh)
+  aspect-ratio: 1
+  border-radius: 50%
+  background: radial-gradient(circle at 30% 25%, #ffffff 0%, #d7f5e5 45%, #7ddcab 100%)
+  box-shadow: inset 0 0 0 0.3vw rgba(255, 255, 255, 0.9), 0 1.4vw 2.6vw rgba(0, 90, 45, 0.28)
+  animation: globe-float 5s ease-in-out infinite alternate
+  animation-delay: var(--d, 0s)
+
+// The currency symbol on each coin (the label under it carries the code and name for screen readers).
+.globe__symbol
+  font-family: 'Figtree', 'Segoe UI', 'Nirmala UI', 'Noto Sans', 'Noto Sans Bengali', 'Arial Unicode MS', sans-serif
+  font-size: min(3.6vw, 5.8vh)
+  font-weight: 700
+  line-height: 1
+  color: #1dc668
+  // 3D emboss, in em so it scales with the symbol: a light edge on the top-left, a stack of darker layers
+  // down and to the right (the thickness), then a soft shadow on the coin underneath.
+  text-shadow: -0.02em -0.025em 0 rgba(255, 255, 255, 0.95), 0.015em 0.02em 0 #0a9a4c, 0.03em 0.04em 0 #08863f, 0.045em 0.06em 0 #067535, 0.06em 0.08em 0 #05652d, 0.08em 0.11em 0.05em rgba(0, 45, 22, 0.4)
+
+// The Bengali font on most systems has no bold weight, so the taka is thickened with a text stroke.
+.globe__symbol--taka
+  font-size: min(4.2vw, 6.8vh)
+  -webkit-text-stroke: 0.14vw #1dc668
+
+.globe__label
+  margin-top: 0.8vw
+  padding: 0.35em 0.85em
+  border-radius: 999px
+  background: rgba(255, 255, 255, 0.88)
+  font-size: min(0.95vw, 1.6vh)
+  font-weight: 500
+  line-height: 1.2
+  white-space: nowrap
+  color: #101112
+  strong
+    font-weight: 700
+    color: #009a49
+
+@keyframes globe-float
+  from
+    transform: translateY(0)
+  to
+    transform: translateY(-0.9vw)
+
+@media (prefers-reduced-motion: reduce)
+  .globe__disc
+    animation: none
+
+@media (max-width: 991px)
+  .globe
+    height: 200vh
+  .globe__content
+    padding-top: 5vh
+  .globe__title
+    font-size: min(11.5vw, 7vh)
+  .globe__text
+    max-width: 84vw
+    font-size: min(4vw, 2.2vh)
+  .globe__coin
+    left: calc(var(--mx) * 1%)
+    top: calc(var(--my) * 1%)
+  .globe__disc
+    width: min(15vw, 11vh)
+    animation-name: globe-float-mobile
+    box-shadow: inset 0 0 0 0.8vw rgba(255, 255, 255, 0.9), 0 3vw 5vw rgba(0, 90, 45, 0.28)
+  .globe__symbol
+    font-size: min(7.4vw, 5.4vh)
+  .globe__symbol--taka
+    font-size: min(8.6vw, 6.2vh)
+    -webkit-text-stroke: 0.3vw #1dc668
+  .globe__label
+    margin-top: 2vw
+    font-size: min(3.2vw, 1.9vh)
+  .globe__name
+    display: none
+
+// Tablets: the headline is one line wide here, so keep it clear of the screen edges.
+@media (min-width: 600px) and (max-width: 991px)
+  .globe__title
+    font-size: min(8.4vw, 7vh)
+  .globe__text
+    font-size: min(2.8vw, 2.2vh)
+
+@keyframes globe-float-mobile
+  from
+    transform: translateY(0)
+  to
+    transform: translateY(-2vw)

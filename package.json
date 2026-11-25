@@ -6,6 +6,7 @@
     "sass:watch": "npm run sass -- --watch"
   },
   "devDependencies": {
+    "gsap": "^3.12.5",
     "sass": "^1.108.2"
   }
 }

@@ -1,9 +1,14 @@
 .metrics__lottie-animate lottie-player,
 img[src*="slide_0"]
   filter: hue-rotate(-78deg) saturate(.85)
-.app__card,
+// The desktop black and red cards are position: absolute in the design (stacked on the green one and
+// slid up over it by Taptop). Only the green card and the mobile cards need position: relative, to anchor
+// the card picture; forcing it on all of them lined the cards up in a row off the right edge.
+.app__card:first-child,
 .app-adaptive__card
   position: relative
+.app__card,
+.app-adaptive__card
   overflow: hidden
 .lulu-card-shot
   position: absolute
@@ -19,13 +24,17 @@ img[src*="slide_0"]
   display: none!important
 .app__card:nth-child(1),
 .app-adaptive__card[id='io0k7xzzu_0']
+  // Gradients: the card colour at the top, a lighter tint of the same colour at the bottom.
   background-color: #009a49!important
+  background-image: linear-gradient(180deg, #009a49 0%, #1fb06a 50%, #7fe3b0 100%)!important
 .app__card:nth-child(2),
 .app-adaptive__card[id='ibuz3jj76_0']
   background-color: #101112!important
+  background-image: linear-gradient(180deg, #101112 0%, #2c2f33 50%, #6a7077 100%)!important
 .app__card:nth-child(3),
 .app-adaptive__card[id='ikffipwel_0']
   background-color: #ce1126!important
+  background-image: linear-gradient(180deg, #ce1126 0%, #e03a4e 50%, #f59aa6 100%)!important
 .app__card:nth-child(2) .text--dark-blue
   color: #fff!important
 .app__card:nth-child(2) .opacity--60
@@ -73,31 +82,12 @@ img[src*="slide_0"]
   border-radius: 22%!important
   overflow: hidden
   box-shadow: 0 6px 18px rgba(16,17,18,.12)
-.reviews__card:nth-child(3) .reviews__card-author
-  border-left: 3px solid #1e7be0
-  padding-left: .8vw
 .lulu-hl
   background: #bfe3ff
   border-radius: .35em
   padding: 0 .22em
   -webkit-box-decoration-break: clone
   box-decoration-break: clone
-.tc-hand,
-.tc-phone
-  position: absolute!important
-  z-index: 1!important
-  pointer-events: none
-.tc-hand
-  right: -6%
-  bottom: 6%
-  width: 60%
-  filter: drop-shadow(0 18px 28px rgba(16,17,18,.25))
-.tc-phone
-  right: -6%
-  bottom: -16%
-  width: 58%
-  transform: rotate(5deg)
-  filter: drop-shadow(0 18px 28px rgba(16,17,18,.25))
 .numbers__card-value,
 .numbers-adaptive__card-value
   visibility: hidden!important
@@ -105,16 +95,18 @@ img[src*="slide_0"]
 .numbers__card,
 .numbers-adaptive__card
   background-size: cover!important
-  background-position: center top!important
+  // Two layers (fade, photo). The photos are 3:4 with empty sky at the top, so only the photo is nudged
+  // up, which keeps the phones above the card text; the fade stays put.
+  background-position: center top, center -28px!important
 .numbers__card:nth-child(1),
 .numbers-adaptive__card:nth-child(1)
-  background-image: linear-gradient(180deg,rgba(255,254,252,0) 38%,rgba(255,254,252,.92) 62%,#fffefc 72%),url("../images/card-photo-transfers.jpg")!important
+  background-image: linear-gradient(180deg,rgba(255,254,252,0) 60%,rgba(255,254,252,.9) 74%,#fffefc 78%),url("../images/people/numbers-transfer.webp")!important
 .numbers__card:nth-child(2),
 .numbers-adaptive__card:nth-child(2)
-  background-image: linear-gradient(180deg,rgba(255,254,252,0) 38%,rgba(255,254,252,.92) 62%,#fffefc 72%),url("../images/card-photo-rates.jpg")!important
+  background-image: linear-gradient(180deg,rgba(255,254,252,0) 60%,rgba(255,254,252,.9) 74%,#fffefc 78%),url("../images/people/numbers-rates.webp")!important
 .numbers__card:nth-child(3),
 .numbers-adaptive__card:nth-child(3)
-  background-image: linear-gradient(180deg,rgba(255,254,252,0) 38%,rgba(255,254,252,.92) 62%,#fffefc 72%),url("../images/card-photo-tracking.jpg")!important
+  background-image: linear-gradient(180deg,rgba(255,254,252,0) 60%,rgba(255,254,252,.9) 74%,#fffefc 78%),url("../images/people/numbers-tracking.webp")!important
 @media (max-width:991px)
   .cover-adaptive__video
     width: 100%!important
@@ -129,3 +121,543 @@ img[src*="slide_0"]
   transform: none
   height: auto
   width: 62%
+
+// Banner main logo: 1.8x taller than the Taptop default at every breakpoint.
+// Width follows the logo's 554:210 ratio, because the SVG is fitted by its height.
+// Same cascade order as the original .logo__wrapper rules.
+.logo__wrapper
+  width: 11.04vw
+  height: 4.18vw
+  top: -0.53vw
+@media (max-width: 991px)
+  .logo__wrapper
+    width: 11.12vw
+    height: 4.21vw
+    top: -0.29vw
+@media (max-width: 767px)
+  .logo__wrapper
+    width: 17.82vw
+    height: 6.75vw
+    top: -0.46vw
+@media (max-width: 479px)
+  .logo__wrapper
+    width: 26.75vw
+    height: 10.13vw
+    top: 0
+@media (min-width: 1440px)
+  .logo__wrapper
+    width: 7.6vw
+    height: 2.88vw
+    top: -0.15vw
+@media (min-width: 1920px)
+  .logo__wrapper
+    width: 7.18vw
+    height: 2.72vw
+    top: -0.35vw
+
+
+// Scroll section: Taptop's animation is unchanged (three rows of tiles flying past, the banner
+// shrinking, the sideways phone that rotates in "One powerful app"), but every tile is a
+// landscape phone screen (844:390, rounded phone-display corners) at the height it already had,
+// and the sideways phone fills a tile of the same size.
+// Taptop reads the size of the last tile (.route__device) for its banner timeline, so that box and
+// the "One powerful app" box keep their sizes; their phone image is widened inside them instead.
+@media (min-width: 992px)
+  :root
+    --tile-h: 20.45vw
+    --tile-w: calc(var(--tile-h) * 844 / 390)
+  .route__image
+    width: var(--tile-w) !important
+    height: var(--tile-h) !important
+    border-radius: 2.4vw
+  .route__device
+    border-radius: 2.4vw
+  // The middle row follows the banner and is followed by the phone tile, which slides in behind it at a
+  // fixed distance. With tiles this wide, three photos would run into the phone, so the row shows two:
+  // [banner][photo][photo][phone], nothing overlapping. The third slot is an invisible placeholder.
+  // Tiles are not removed or reordered, so the row keeps its size.
+  // The row is anchored on the right (flex-end) and
+  // Taptop ties the banner to its left edge, so that edge must not move: margin-right = Taptop's - 3 x (W - w0).
+  .route__content--middle-new
+    margin-right: 25.7vw
+    .route__image:nth-child(3)
+      visibility: hidden
+  // Banner shape: Taptop tweens width/height/radius inline, so it is not resized here. Its width is only
+  // clamped to the tile width (min-width); banner-shape.js shifts it left (--mask-x) by half the extra
+  // width, so its right edge stays where Taptop puts it, next to the middle row. The radius is animated
+  // inline by Taptop, so !important is needed for it.
+  .cover__mask
+    border-radius: 2.4vw !important
+  // Only after the first-load intro (class set by banner-shape.js): on first load the intro grows the banner from the centre.
+  .banner-shrinking .cover__mask
+    min-width: var(--tile-w)
+    translate: var(--mask-x, 0px) 0
+  // The photo fills whatever shape the banner has (Taptop scales it for the old shape).
+  .cover__video
+    width: 100% !important
+    height: 100% !important
+    min-width: 0 !important
+    transform: none !important
+    object-fit: cover
+    object-position: 60% 50%
+  // The sideways phone (device-tile-crop.png, the old image cropped to the phone) is as wide as a
+  // tile, centered on its box, so it rotates and slides exactly where Taptop puts the box.
+  .route__device,
+  .numbers__device-image
+    position: relative
+    overflow: visible
+    border-radius: 0
+    .image__img
+      position: absolute
+      top: 0
+      left: 50%
+      width: var(--tile-w)
+      max-width: none
+      height: 100%
+      object-fit: fill
+      transform: translateX(-50%)
+  // The "One powerful app" box is always 15.63vw high, so its phone is always 33.82vw wide.
+  .numbers__device-image .image__img
+    width: calc(15.63vw * 844 / 390)
+
+  // Wall photos (assets/images/people): 1672x773 crops, the same 844:390 shape as the tiles.
+  .div--u-irhrgpah5
+    background-image: url("../images/people/d-campus-friends-laughing.webp")
+    background-size: cover
+    background-position: center center
+    background-repeat: no-repeat
+  .div--u-i10chlkuu
+    background-image: url("../images/people/d-dubai-metro-commuter.webp")
+    background-size: cover
+    background-position: center center
+    background-repeat: no-repeat
+  .div--u-isgs5xk1c
+    background-image: url("../images/people/d-woman-in-lounge.webp")
+    background-size: cover
+    background-position: center center
+    background-repeat: no-repeat
+  .div--u-izieaa41e
+    background-image: url("../images/people/d-emirati-professional-call.webp")
+    background-size: cover
+    background-position: center center
+    background-repeat: no-repeat
+  .div--u-is15cp6ya
+    background-image: url("../images/people/d-finding-the-way-on-campus.webp")
+    background-size: cover
+    background-position: center center
+    background-repeat: no-repeat
+  .div--u-iofrkao9k
+    background-image: url("../images/people/d-grandmother-video-call.webp")
+    background-size: cover
+    background-position: center center
+    background-repeat: no-repeat
+  .div--u-ioy2ioa3m
+    background-image: url("../images/people/d-waterfront-friends.webp")
+    background-size: cover
+    background-position: center center
+    background-repeat: no-repeat
+  .div--u-i7t3njzxd
+    background-image: url("../images/people/d-illustrator-with-sketchbook.webp")
+    background-size: cover
+    background-position: center center
+    background-repeat: no-repeat
+  .div--u-ib7i5zgks
+    background-image: url("../images/people/d-campus-song-on-phone.webp")
+    background-size: cover
+    background-position: center center
+    background-repeat: no-repeat
+  .div--u-ikrfj88ik
+    background-image: url("../images/people/d-mechanic-message-break.webp")
+    background-size: cover
+    background-position: center center
+    background-repeat: no-repeat
+  .div--u-i7tleptbp
+    background-image: url("../images/people/d-father-with-baby.webp")
+    background-size: cover
+    background-position: center center
+    background-repeat: no-repeat
+  .div--u-iz3yve8wo
+    background-image: url("../images/people/d-florist-with-smartphone.webp")
+    background-size: cover
+    background-position: center center
+    background-repeat: no-repeat
+
+@media (min-width: 1440px)
+  :root
+    --tile-h: 15.63vw
+  .route__content--middle-new
+    margin-right: 31.52vw
+
+// Mobile: a swipe row of full-width phone-screen cards (390:844), CSS only.
+@media (max-width: 991px)
+  // Wall photos (assets/images/people): 435x941 portrait crops, the same 390:844 shape as the cards.
+  .div--u-i2vgsdvq2
+    background-image: url("../images/people/m-campus-friends-laughing.webp")
+    background-size: cover
+    background-position: center center
+    background-repeat: no-repeat
+  .div--u-i9irmmc24
+    background-image: url("../images/people/m-dubai-metro-commuter.webp")
+    background-size: cover
+    background-position: center center
+    background-repeat: no-repeat
+  .div--u-iejkca0vd
+    background-image: url("../images/people/m-woman-in-lounge.webp")
+    background-size: cover
+    background-position: center center
+    background-repeat: no-repeat
+  .div--u-iy5ipa18c
+    background-image: url("../images/people/m-emirati-professional-call.webp")
+    background-size: cover
+    background-position: center center
+    background-repeat: no-repeat
+  .div--u-ija4mgr3l
+    background-image: url("../images/people/m-finding-the-way-on-campus.webp")
+    background-size: cover
+    background-position: center center
+    background-repeat: no-repeat
+  .div--u-iplb9tj7y
+    background-image: url("../images/people/m-grandmother-video-call.webp")
+    background-size: cover
+    background-position: center center
+    background-repeat: no-repeat
+  .div--u-iq27sv4mj
+    background-image: url("../images/people/m-illustrator-with-sketchbook.webp")
+    background-size: cover
+    background-position: center center
+    background-repeat: no-repeat
+  .div--u-in9tccwi2
+    background-image: url("../images/people/m-campus-song-on-phone.webp")
+    background-size: cover
+    background-position: center center
+    background-repeat: no-repeat
+  .div--u-idrneykpq
+    background-image: url("../images/people/m-mechanic-message-break.webp")
+    background-size: cover
+    background-position: center center
+    background-repeat: no-repeat
+  .div--u-iri3n1t7t
+    background-image: url("../images/people/m-father-with-baby.webp")
+    background-size: cover
+    background-position: center center
+    background-repeat: no-repeat
+  .div--u-izxrpco4w
+    background-image: url("../images/people/m-florist-with-smartphone.webp")
+    background-size: cover
+    background-position: center center
+    background-repeat: no-repeat
+  .div--u-isizgujid
+    background-image: url("../images/people/m-market-shopper.webp")
+    background-size: cover
+    background-position: center center
+    background-repeat: no-repeat
+  .div--u-igg2dbhx1
+    background-image: url("../images/people/m-friends-over-coffee.webp")
+    background-size: cover
+    background-position: center center
+    background-repeat: no-repeat
+  .div--u-i9bk6tkau
+    background-image: url("../images/people/m-software-designer.webp")
+    background-size: cover
+    background-position: center center
+    background-repeat: no-repeat
+  .div--u-ixhfwlt0k
+    background-image: url("../images/people/m-warehouse-worker-break.webp")
+    background-size: cover
+    background-position: center center
+    background-repeat: no-repeat
+  .route__wrapper--adaptive
+    flex-direction: row
+    overflow-x: auto
+    scroll-snap-type: x mandatory
+    column-gap: 12px
+    padding-left: 0
+    padding-right: 0
+    padding-top: 13.02vw
+    -webkit-overflow-scrolling: touch
+    scrollbar-width: none
+    &::-webkit-scrollbar
+      display: none
+  .route__content--adaptive
+    display: contents
+  .route__image--adaptive
+    flex: 0 0 min(100%, 480px)
+    width: min(100%, 480px)
+    height: auto
+    aspect-ratio: 390 / 844
+    border-radius: min(12vw, 47px)
+    scroll-snap-align: center
+
+// ---------------------------------------------------------------------------
+// "One world. Multiple currencies.": sample amount (100 OMR) under each currency code, filled by
+// assets/js/rates.js from live rates. Hidden until the rates arrive, so a failed request leaves the
+// section as it was. The space is reserved, so nothing shifts when the amounts appear.
+// ---------------------------------------------------------------------------
+.timeline__amount
+  display: block
+  margin-top: 0.15vw
+  font-size: 0.95vw
+  font-weight: 500
+  line-height: 1.2
+  letter-spacing: -0.01em
+  text-align: center
+  white-space: nowrap
+  color: rgba(16, 17, 18, 0.6)
+  font-variant-numeric: tabular-nums
+  visibility: hidden
+  min-height: 1.2em
+
+// EUR, AUD and CAD have no code in the ruler; their label hangs under the circle flag.
+.timeline__amount--circle
+  position: absolute
+  top: 100%
+  left: 50%
+  margin-top: 0.4vw
+  transform: translateX(-50%)
+
+.timeline__amount-code
+  font-weight: 600
+  color: rgba(16, 17, 18, 0.85)
+
+.rates-note
+  margin: 0
+  font-size: 0.8vw
+  line-height: 1.3
+  text-align: center
+  color: rgba(16, 17, 18, 0.5)
+  visibility: hidden
+  a
+    color: inherit
+    text-decoration: underline
+    text-underline-offset: 2px
+    &:hover,
+    &:focus-visible
+      color: rgba(16, 17, 18, 0.85)
+
+.rates-note--desktop
+  position: absolute
+  left: 50%
+  bottom: 1.5vh
+  z-index: 3
+  transform: translateX(-50%)
+
+.rates-ready
+  .timeline__amount,
+  .rates-note
+    visibility: visible
+
+@media (max-width: 991px)
+  .timeline__amount
+    margin-top: 0.4vw
+    font-size: max(10px, 2.2vw)
+  .timeline__amount--circle
+    margin-top: 1vw
+  .rates-note
+    font-size: max(10px, 2vw)
+  .rates-note--adaptive
+    margin-top: 2vw
+    padding: 0 4vw
+
+// The mobile ruler spaces its items with a row-gap; pull the amount up under its code.
+@media (max-width: 991px)
+  .metrics-adaptive__time-icon > .timeline__amount
+    margin-top: -1.94vw
+@media (max-width: 767px)
+  .metrics-adaptive__time-icon > .timeline__amount
+    margin-top: -3.35vw
+@media (max-width: 479px)
+  .metrics-adaptive__time-icon > .timeline__amount
+    margin-top: -5.23vw
+
+@media (min-width: 992px)
+  .rates-note--adaptive
+    display: none
+
+@media (max-width: 991px)
+  .rates-note--desktop
+    display: none
+
+@media (min-width: 1440px)
+  .timeline__amount
+    font-size: 0.8vw
+  .rates-note
+    font-size: 0.7vw
+
+// ---------------------------------------------------------------------------
+// "Right in your hands" on mobile: a vertical stack of three pairs (phone screen, then its card).
+// Each item pops in from the side as it scrolls into view: pair 1 from the right, pair 2 from the
+// left, pair 3 from the right (assets/js/app-pop.js adds .is-pop, then .is-in). The children of
+// .app-adaptive__wrapper are img 1-3 then card 1-3, so the CSS order property interleaves them.
+// ---------------------------------------------------------------------------
+@media (max-width: 991px)
+  // Items start off to the side, so the section must not make the page scroll sideways.
+  .app-adaptive
+    overflow-x: hidden
+    overflow-x: clip
+  .app-adaptive__mask
+    overflow: visible
+  .app-adaptive__wrapper
+    width: auto
+    display: flex
+    flex-direction: column
+    align-items: center
+    row-gap: 5vw
+    margin-left: 4vw
+    margin-right: 4vw
+    padding-bottom: 6vw
+  .app-adaptive__wrapper > :nth-child(1)
+    order: 1
+  .app-adaptive__wrapper > :nth-child(4)
+    order: 2
+  .app-adaptive__wrapper > :nth-child(2)
+    order: 3
+  .app-adaptive__wrapper > :nth-child(5)
+    order: 4
+  .app-adaptive__wrapper > :nth-child(3)
+    order: 5
+  .app-adaptive__wrapper > :nth-child(6)
+    order: 6
+  // Cards grow with their content (the title and text were clipped by a fixed height)
+  .app-adaptive__card
+    width: 100%
+    max-width: 520px
+    height: auto
+    justify-content: flex-start
+    overflow: hidden
+  .app-adaptive__img,
+  .app-adaptive__card
+    --from: 22vw
+  .app-adaptive__wrapper > :nth-child(2),
+  .app-adaptive__wrapper > :nth-child(5)
+    --from: -22vw
+  .app-adaptive__img.is-pop,
+  .app-adaptive__card.is-pop
+    opacity: 0
+    transform: translateX(var(--from)) scale(0.92)
+    transition: opacity 0.7s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1)
+    will-change: transform, opacity
+  .app-adaptive__card.is-pop
+    transition-delay: 0.12s
+  .app-adaptive__img.is-pop.is-in,
+  .app-adaptive__card.is-pop.is-in
+    opacity: 1
+    transform: none
+
+// ---------------------------------------------------------------------------
+// "Your money. Your way." (desktop):
+// - The title sits lower, so the site header (menu) that slides in from the top has room and does not
+//   cover it.
+// - The tabs (Bank Transfer, Cash Pickup, Pay at Branch) are about 1.4 to 1.5 times bigger. Taptop's
+//   green marker slides between the tabs by a fixed distance, so every tab keeps exactly the position it
+//   had: row-gap is 0 and each tab's margin-bottom = (old distance to the next tab) - (new text height).
+//   line-height is 1, so the text height equals the font size.
+// ---------------------------------------------------------------------------
+@media (min-width: 992px)
+  .advantages__h3-heading
+    padding-top: max(4.5vw, 56px)
+  .advantages__tabs-wrapper
+    row-gap: 0.7vw
+  .advantages__tab
+    line-height: 1
+    white-space: nowrap
+  .advantages__tab[tab='1']
+    font-size: 2.25vw
+    margin-bottom: 0.47vw
+  .advantages__tab[tab='2'],
+  .advantages__tab[tab='3']
+    font-size: 1.97vw
+  .advantages__tab[tab='2']
+    margin-bottom: 0.9vw
+
+@media (min-width: 1440px)
+  .advantages__tab[tab='1']
+    font-size: 1.67vw
+    margin-bottom: 0.18vw
+  .advantages__tab[tab='2'],
+  .advantages__tab[tab='3']
+    font-size: 1.46vw
+  .advantages__tab[tab='2']
+    margin-bottom: 0.44vw
+
+@media (min-width: 1920px)
+  .advantages__tab[tab='1']
+    font-size: 1.46vw
+    margin-bottom: 0.06vw
+  .advantages__tab[tab='2'],
+  .advantages__tab[tab='3']
+    font-size: 1.16vw
+  .advantages__tab[tab='2']
+    margin-bottom: 0.47vw
+
+// "Your money. Your way." (desktop): more space between each title (Bank Transfer, Cash Pickup, Pay at
+// Branch) and its text, and the whole description block sits a little higher, off the bottom edge. All three
+// stay on the same line, so they do not jump as the tabs change.
+@media (min-width: 992px)
+  .advantages__description
+    row-gap: 1.5vw
+  .advantages__description-wrapper
+    margin-bottom: 1.8vw
+
+// "Sending money. Made effortless.": while the heading is blurred (assets/js/steps-blur.js) its box must not
+// clip the blur, so only the letters are softened and no hard-edged strip shows.
+.steps__text-mask.is-blurring
+  overflow-x: visible
+  overflow-y: visible
+
+// "Your money. Your way." (desktop): the green dot is moved by assets/js/tabs-marker.js so it always sits level
+// with the active title; Taptop's own slide of the dot is switched off and the dot glides with `translate` (eased in the script).
+@media (min-width: 992px)
+  .advantages__marker
+    transform: none !important
+
+// Travel Card cards: text only, on frosted glass over the photo (no pictures inside the cards).
+.reviews__card,
+.reviews-adaptive__card
+  background-color: rgba(255, 255, 255, 0.58)!important
+  background-image: none!important
+  -webkit-backdrop-filter: blur(22px) saturate(1.5)
+  backdrop-filter: blur(22px) saturate(1.5)
+  border: 1px solid rgba(255, 255, 255, 0.55)
+  box-shadow: 0 1.2vw 3vw rgba(16, 17, 18, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.6)
+
+// Travel Card boxes 2 and 3 lost their small top box, so their text sat on the top edge. Give them the same
+// top spacing the first box has (its top box padding), so top and bottom padding match across all three.
+.div--u-i9eiz2lyf .reviews__card-quote,
+.div--u-iegtvw6ti .reviews__card-quote
+  padding-top: 1.6vw
+
+@media (max-width: 991px)
+  #iwviahi8c_0 .reviews-adaptive__quote,
+  #i4n9zzd3d_0 .reviews-adaptive__quote
+    padding-top: 1.95vw
+
+@media (max-width: 767px)
+  #iwviahi8c_0 .reviews-adaptive__quote,
+  #i4n9zzd3d_0 .reviews-adaptive__quote
+    padding-top: 3.13vw
+
+// Travel Card boxes: a PNG sits at the lower right of each glass card, text stays on the left.
+.tc-shot
+  position: absolute!important
+  z-index: 1!important
+  pointer-events: none
+  height: auto
+  filter: drop-shadow(0 14px 22px rgba(16, 17, 18, 0.22))
+
+.tc-shot--hand
+  right: -2%
+  bottom: 6%
+  width: 52%
+
+.tc-shot--phone
+  right: 5%
+  bottom: 0
+  width: 46%
+
+// Card Management screen: its picture is a full phone (taller and tighter than the wallets picture), so it is
+// sized to match the phone in the second box.
+.div--u-iegtvw6ti .tc-shot--phone,
+#i4n9zzd3d_0 .tc-shot--phone
+  width: 22%
+  right: 7%
+  bottom: 5%
