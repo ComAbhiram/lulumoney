@@ -1,0 +1,11 @@
+{
+  "name": "lulumoney",
+  "private": true,
+  "scripts": {
+    "sass": "sass --no-source-map --style=compressed assets/sass/app.sass:assets/css/app.min.css assets/sass/pages.sass:assets/css/pages.min.css",
+    "sass:watch": "npm run sass -- --watch"
+  },
+  "devDependencies": {
+    "sass": "^1.108.2"
+  }
+}

@@ -1,0 +1,58 @@
+// Блокировка скролла фона при открытом попапе (без скачков)
+body[style*="position: fixed"]
+  overflow: hidden !important
+  position: static !important
+  top: 0 !important
+  left: 0 !important
+  right: 0 !important
+// Дополнительная защита для оверлея
+.pop-up__overlay,
+.pop-up__bg
+  pointer-events: auto !important
+
+// Advantges. Табы
+.advantages__tab
+  transition: color 0.2s ease
+.advantages__tab:hover
+  color: #101112 !important
+
+// Поп-апы. Крестики
+.pop-up__close,
+.pop-up__close-credits
+  pointer-events: auto !important
+  z-index: 99999 !important
+  cursor: pointer
+.pop-up__contents,
+.footer__credits-content
+  overflow: visible !important
+.pop-up__close--inner
+  border: 1px solid #101112 !important
+  box-sizing: border-box
+.pop-up__contents--scrollable,
+.footer__credits-content--scrollable
+  overflow-y: auto !important
+  scrollbar-width: none !important
+  -ms-overflow-style: none !important
+.pop-up__contents--scrollable::-webkit-scrollbar,
+.footer__credits-content--scrollable::-webkit-scrollbar
+  display: none !important
+
+// Поп-апы. Скрываем Яндекс.капчу
+div[data-testid="shield"]
+  display: none !important
+  visibility: hidden !important
+  opacity: 0 !important
+  pointer-events: none !important
+
+// НОВОЕ: Для видео на адаптивах
+@media (max-width: 991px)
+  .cover,
+  .cover__video,
+  .cover-adaptive__video
+    background: #5189AC
+  .cover__video,
+  .cover-adaptive__video
+    object-fit: cover
+
+.video-poster.hide
+  opacity: 0
